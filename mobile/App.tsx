@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StatusBar, Alert, Platform } from 'react-native';
+import { StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 // Screens
@@ -72,17 +72,6 @@ const MainTabs = () => {
 };
 
 const App = () => {
-  // Initialize step tracking when app starts
-  useEffect(() => {
-    // Import step tracking service
-    import('./src/services/stepTrackingService').then((module) => {
-      const cleanup = module.initializeStepTracking();
-      
-      // Cleanup on unmount
-      return cleanup;
-    });
-  }, []);
-
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />

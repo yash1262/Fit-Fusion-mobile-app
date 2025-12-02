@@ -68,8 +68,12 @@ const DashboardScreen = ({ navigation }: any) => {
     return () => unsubscribe();
   }, []);
 
-  // Check step tracking status
+  // Initialize and check step tracking
   useEffect(() => {
+    // Initialize step tracking when dashboard loads
+    import('../services/stepTrackingService').then((module) => {
+      module.initializeStepTracking();
+    });
     checkStepTracking();
   }, []);
 
