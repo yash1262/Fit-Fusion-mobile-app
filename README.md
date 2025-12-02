@@ -54,6 +54,14 @@ Transform your fitness journey with intelligent coaching, comprehensive tracking
 <table>
 <tr>
 <td align="center">
+<h4>🔴 Expo Go (Live Development)</h4>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/yash1262/Fit-Fusion-mobile-app" alt="Expo Go QR Code" width="200"/>
+<br/>
+<b>Run the app & scan QR in terminal</b>
+<br/>
+<code>cd mobile && npm start</code>
+</td>
+<td align="center">
 <h4>iOS (TestFlight)</h4>
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/yash1262/Fit-Fusion-mobile-app" alt="iOS QR Code" width="200"/>
 <br/>
@@ -68,7 +76,9 @@ Transform your fitness journey with intelligent coaching, comprehensive tracking
 </tr>
 </table>
 
-**📖 Detailed Installation Guide:** [APP_INSTALL.md](APP_INSTALL.md)
+**📖 Installation Guides:**
+- [APP_INSTALL.md](APP_INSTALL.md) - Complete installation guide
+- [mobile/EXPO_QR_GUIDE.md](mobile/EXPO_QR_GUIDE.md) - Expo Go QR code guide
 
 ---
 
