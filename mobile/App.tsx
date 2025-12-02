@@ -15,6 +15,11 @@ import WorkoutScreen from './src/screens/WorkoutScreen';
 import DietScreen from './src/screens/DietScreen';
 import ProgressScreen from './src/screens/ProgressScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+import AiCoachScreen from './src/screens/AiCoachScreen';
+import MealLoggerScreen from './src/screens/MealLoggerScreen';
+import MusicPlaylistScreen from './src/screens/MusicPlaylistScreen';
+import SmartWorkoutScreen from './src/screens/SmartWorkoutScreen';
+import NotificationSettingsScreen from './src/screens/NotificationSettingsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -92,6 +97,11 @@ const App = () => {
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="Main" component={MainTabs} />
+          <Stack.Screen name="AiCoach" component={AiCoachScreen} />
+          <Stack.Screen name="MealLogger" component={MealLoggerScreen} />
+          <Stack.Screen name="MusicPlaylist" component={MusicPlaylistScreen} />
+          <Stack.Screen name="SmartWorkout" component={SmartWorkoutScreen} />
+          <Stack.Screen name="NotificationSettings" component={NotificationSettingsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
