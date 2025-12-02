@@ -1,5 +1,13 @@
 # 🚀 Start Fit Fusion App - Quick Guide
 
+## ⚠️ IMPORTANT: Where to Find the QR Code
+
+**The QR code is NOT on GitHub!**
+
+The QR code appears in your **TERMINAL** when you run the app.
+
+---
+
 ## For Developers (Run Locally with Expo Go)
 
 ### Step 1: Install Dependencies
@@ -13,7 +21,11 @@ npm install
 npm start
 ```
 
+### Step 3: Look at Your Terminal!
+
 **A QR code will appear in your terminal!** 📱
+
+**DO NOT scan QR codes from GitHub - they won't work!**
 
 ### Step 3: Scan QR Code
 

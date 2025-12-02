@@ -2,6 +2,19 @@
 
 ## Quick Install via QR Code
 
+### 🔴 Expo Go (For Developers)
+
+**⚠️ The Expo QR code appears in your terminal when you run:**
+```bash
+cd mobile && npm start
+```
+
+**Scan the QR code from your terminal, NOT from GitHub!**
+
+See [HOW_TO_RUN.md](HOW_TO_RUN.md) for detailed instructions.
+
+---
+
 ### iOS (TestFlight)
 Scan this QR code with your iPhone camera to install via TestFlight:
 

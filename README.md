@@ -49,29 +49,38 @@ Transform your fitness journey with intelligent coaching, comprehensive tracking
 
 ## 📱 Download & Install Mobile App
 
-### 📲 Quick Install - Scan QR Code
+### 📲 Quick Install
 
 <table>
 <tr>
-<td align="center">
-<h4>🔴 Expo Go (Live Development)</h4>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/yash1262/Fit-Fusion-mobile-app" alt="Expo Go QR Code" width="200"/>
+<td align="center" width="33%">
+<h4>🔴 Expo Go (Development)</h4>
 <br/>
-<b>Run the app & scan QR in terminal</b>
+<b>For Developers:</b>
 <br/>
 <code>cd mobile && npm start</code>
+<br/><br/>
+<b>📱 Scan QR code from terminal</b>
+<br/>
+<i>QR code appears when you run the app</i>
+<br/><br/>
+<a href="START_APP.md">📖 Quick Start Guide</a>
 </td>
-<td align="center">
-<h4>iOS (TestFlight)</h4>
+<td align="center" width="33%">
+<h4>🍎 iOS (TestFlight)</h4>
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/yash1262/Fit-Fusion-mobile-app" alt="iOS QR Code" width="200"/>
 <br/>
 <a href="https://testflight.apple.com/join/your-code">Install on iOS</a>
+<br/>
+<i>Beta testing via TestFlight</i>
 </td>
-<td align="center">
-<h4>Android (APK)</h4>
+<td align="center" width="33%">
+<h4>🤖 Android (APK)</h4>
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/yash1262/Fit-Fusion-mobile-app/releases" alt="Android QR Code" width="200"/>
 <br/>
 <a href="https://github.com/yash1262/Fit-Fusion-mobile-app/releases">Download APK</a>
+<br/>
+<i>Direct APK installation</i>
 </td>
 </tr>
 </table>
