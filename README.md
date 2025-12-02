@@ -47,7 +47,32 @@ Transform your fitness journey with intelligent coaching, comprehensive tracking
 - **Code Quality**: ESLint, Prettier, TypeScript
 - **Testing**: Jest, React Testing Library
 
-## 📱 Installation & Setup
+## 📱 Download & Install Mobile App
+
+### 📲 Quick Install - Scan QR Code
+
+<table>
+<tr>
+<td align="center">
+<h4>iOS (TestFlight)</h4>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/yash1262/Fit-Fusion-mobile-app" alt="iOS QR Code" width="200"/>
+<br/>
+<a href="https://testflight.apple.com/join/your-code">Install on iOS</a>
+</td>
+<td align="center">
+<h4>Android (APK)</h4>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/yash1262/Fit-Fusion-mobile-app/releases" alt="Android QR Code" width="200"/>
+<br/>
+<a href="https://github.com/yash1262/Fit-Fusion-mobile-app/releases">Download APK</a>
+</td>
+</tr>
+</table>
+
+**📖 Detailed Installation Guide:** [APP_INSTALL.md](APP_INSTALL.md)
+
+---
+
+## 💻 Development Setup
 
 ### Prerequisites
 - Node.js >= 16.0.0
