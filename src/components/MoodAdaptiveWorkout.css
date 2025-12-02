@@ -1,0 +1,394 @@
+.mood-adaptive-workout {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.mood-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.mood-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.mood-subtitle {
+  font-size: 1rem;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.mood-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.mood-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: #f8fafc;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mood-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(112, 141, 80, 0.2);
+  border-color: #708d50;
+}
+
+.mood-button.selected {
+  background: linear-gradient(135deg, rgba(112, 141, 80, 0.1), rgba(112, 141, 80, 0.05));
+  border-color: #708d50;
+  box-shadow: 0 8px 20px rgba(112, 141, 80, 0.3);
+}
+
+.mood-emoji {
+  font-size: 3rem;
+}
+
+.mood-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.mood-recommendation {
+  position: relative;
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-top: 2rem;
+  border: 2px solid #708d50;
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recommendation-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.voice-button {
+  background: linear-gradient(135deg, #708d50, #5a7340);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(112, 141, 80, 0.3);
+}
+
+.voice-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(112, 141, 80, 0.4);
+}
+
+.voice-button.speaking {
+  animation: pulse 1.5s ease-in-out infinite;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+  }
+}
+
+.close-button {
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #1a1a1a;
+}
+
+.close-button:hover {
+  background: rgba(0, 0, 0, 0.2);
+  transform: rotate(90deg);
+}
+
+.recommendation-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.recommendation-emoji {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.recommendation-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.speaking-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #d97706;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recommendation-section {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+/* Quote Section */
+.quote-section {
+  background: linear-gradient(135deg, #708d50, #5a7340);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+
+.quote-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.quote-text {
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Motivation Section */
+.motivation-section {
+  background: linear-gradient(135deg, rgba(112, 141, 80, 0.1), rgba(255, 255, 255, 1));
+  border-left: 4px solid #708d50;
+}
+
+.motivation-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+/* Workout Section */
+.workout-section {
+  border-left: 4px solid #f59e0b;
+}
+
+.workout-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.workout-duration,
+.workout-intensity {
+  background: #f8fafc;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+}
+
+.exercise-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.exercise-item {
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.exercise-item:before {
+  content: '✓';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: #708d50;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  margin-right: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Music Section */
+.music-section {
+  border-left: 4px solid #8b5cf6;
+}
+
+.music-details p {
+  margin-bottom: 0.75rem;
+  color: #1a1a1a;
+  font-size: 1rem;
+}
+
+.music-details strong {
+  color: #708d50;
+  font-weight: 700;
+}
+
+/* Breathing Section */
+.breathing-section {
+  border-left: 4px solid #06b6d4;
+}
+
+.breathing-duration {
+  color: #1a1a1a;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.breathing-steps {
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.breathing-step {
+  padding: 0.5rem 0;
+  color: #1a1a1a;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* Start Button */
+.start-workout-button {
+  width: 100%;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #708d50, #5a7340);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(112, 141, 80, 0.3);
+}
+
+.start-workout-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(112, 141, 80, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mood-adaptive-workout {
+    padding: 1.5rem;
+  }
+
+  .mood-selector {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .mood-button {
+    padding: 1rem 0.75rem;
+  }
+
+  .mood-emoji {
+    font-size: 2.5rem;
+  }
+
+  .mood-recommendation {
+    padding: 1.5rem;
+  }
+
+  .recommendation-emoji {
+    font-size: 3rem;
+  }
+
+  .recommendation-title {
+    font-size: 1.5rem;
+  }
+
+  .workout-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

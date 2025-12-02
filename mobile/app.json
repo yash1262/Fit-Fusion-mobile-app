@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "FitFusion",
+    "slug": "fitfusion-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#708d50"
+    },
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fitfusion.app",
+      "infoPlist": {
+        "NSMotionUsageDescription": "We need access to your motion data to track your steps and activity.",
+        "NSLocationWhenInUseUsageDescription": "We need your location to provide weather-based meal suggestions.",
+        "NSUserNotificationsUsageDescription": "We need permission to send you health reminders and notifications.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.fitfusion.app",
+      "permissions": [
+        "ACTIVITY_RECOGNITION",
+        "ACCESS_FINE_LOCATION",
+        "POST_NOTIFICATIONS",
+        "RECEIVE_BOOT_COMPLETED"
+      ]
+    },
+    "plugins": [
+      "expo-notifications",
+      "expo-location",
+      "expo-sensors"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "405a61dd-5014-4757-a451-093e683ab86d"
+      }
+    }
+  }
+}

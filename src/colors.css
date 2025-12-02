@@ -1,0 +1,27 @@
+/* Fit Fusion - Natural Earth Tone Color Palette */
+:root {
+  /* Primary Colors */
+  --primary-green: #708d50;
+  --primary-green-dark: #5a7340;
+  --primary-green-light: #8aa665;
+  
+  /* Neutral Colors */
+  --dark-gray: #262621;
+  --medium-gray: #b0b1ab;
+  --light-gray: #e8e8e0;
+  --background: #f5f5f0;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #708d50 0%, #5a7340 100%);
+  --gradient-background: linear-gradient(135deg, #f5f5f0 0%, #e8e8e0 50%, #deded5 100%);
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(38, 38, 33, 0.08);
+  --shadow-md: 0 4px 16px rgba(38, 38, 33, 0.12);
+  --shadow-lg: 0 8px 24px rgba(38, 38, 33, 0.15);
+  
+  /* Opacity Variants */
+  --green-10: rgba(112, 141, 80, 0.1);
+  --green-20: rgba(112, 141, 80, 0.2);
+  --green-30: rgba(112, 141, 80, 0.3);
+}

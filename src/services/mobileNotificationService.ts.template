@@ -1,0 +1,390 @@
+// Mobile Notification Service Template
+// Use this when converting to React Native or Capacitor
+
+// ============================================
+// FOR REACT NATIVE / EXPO
+// ============================================
+
+/*
+Installation:
+npm install expo-notifications expo-location expo-device
+
+Usage:
+import * as Notifications from 'expo-notifications';
+import * as Location from 'expo-location';
+import * as Device from 'expo-device';
+*/
+
+// Configure notification handler
+/*
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+*/
+
+// Request permissions
+/*
+export const requestMobileNotificationPermission = async (): Promise<boolean> => {
+  if (!Device.isDevice) {
+    alert('Must use physical device for Push Notifications');
+    return false;
+  }
+
+  const { status: existingStatus } = await Notifications.getPermissionsAsync();
+  let finalStatus = existingStatus;
+  
+  if (existingStatus !== 'granted') {
+    const { status } = await Notifications.requestPermissionsAsync();
+    finalStatus = status;
+  }
+  
+  if (finalStatus !== 'granted') {
+    alert('Failed to get push token for push notification!');
+    return false;
+  }
+  
+  return true;
+};
+*/
+
+// Schedule morning water reminder
+/*
+export const scheduleMorningWaterReminder = async (hour: number = 7, minute: number = 0) => {
+  await Notifications.cancelAllScheduledNotificationsAsync();
+  
+  await Notifications.scheduleNotificationAsync({
+    content: {
+      title: "💧 Good Morning! Time to Hydrate",
+      body: "Start your day with a glass of water to boost metabolism and energy!",
+      sound: true,
+      priority: Notifications.AndroidNotificationPriority.HIGH,
+      data: { type: 'water-reminder' },
+    },
+    trigger: {
+      hour,
+      minute,
+      repeats: true,
+    },
+  });
+  
+  console.log('Water reminder scheduled for', hour, ':', minute);
+};
+*/
+
+// Schedule weather-based meal suggestion
+/*
+export const scheduleMealSuggestion = async (hour: number = 7, minute: number = 30) => {
+  // Get current location
+  const { status } = await Location.requestForegroundPermissionsAsync();
+  if (status !== 'granted') {
+    console.warn('Location permission not granted');
+    return;
+  }
+  
+  const location = await Location.getCurrentPositionAsync({});
+  const { latitude, longitude } = location.coords;
+  
+  // Fetch weather
+  const weather = await fetchWeatherData(latitude, longitude);
+  const suggestions = getWeatherBasedMealSuggestions(weather);
+  const meal = suggestions[0];
+  
+  await Notifications.scheduleNotificationAsync({
+    content: {
+      title: `${meal.emoji} ${weather.icon} Breakfast Suggestion`,
+      body: `${meal.name} - ${meal.calories} cal | ${meal.protein}g protein`,
+      sound: true,
+      priority: Notifications.AndroidNotificationPriority.DEFAULT,
+      data: { 
+        type: 'meal-suggestion',
+        meal,
+        weather 
+      },
+    },
+    trigger: {
+      hour,
+      minute,
+      repeats: true,
+    },
+  });
+  
+  console.log('Meal suggestion scheduled for', hour, ':', minute);
+};
+*/
+
+// Handle notification tap
+/*
+export const setupNotificationListeners = () => {
+  // Handle notification received while app is foregrounded
+  Notifications.addNotificationReceivedListener(notification => {
+    console.log('Notification received:', notification);
+  });
+
+  // Handle notification tap
+  Notifications.addNotificationResponseReceivedListener(response => {
+    const data = response.notification.request.content.data;
+    
+    if (data.type === 'water-reminder') {
+      // Navigate to hydration tracking
+      // navigation.navigate('Dashboard');
+    } else if (data.type === 'meal-suggestion') {
+      // Navigate to meal details
+      // navigation.navigate('Diet', { meal: data.meal });
+    }
+  });
+};
+*/
+
+// ============================================
+// FOR CAPACITOR
+// ============================================
+
+/*
+Installation:
+npm install @capacitor/local-notifications
+npm install @capacitor/geolocation
+npx cap sync
+
+Usage:
+import { LocalNotifications } from '@capacitor/local-notifications';
+import { Geolocation } from '@capacitor/geolocation';
+*/
+
+// Request permissions
+/*
+export const requestCapacitorNotificationPermission = async (): Promise<boolean> => {
+  const result = await LocalNotifications.requestPermissions();
+  return result.display === 'granted';
+};
+*/
+
+// Schedule morning water reminder
+/*
+export const scheduleCapacitorWaterReminder = async (hour: number = 7, minute: number = 0) => {
+  await LocalNotifications.schedule({
+    notifications: [
+      {
+        title: "💧 Good Morning! Time to Hydrate",
+        body: "Start your day with a glass of water to boost metabolism and energy!",
+        id: 1,
+        schedule: {
+          on: {
+            hour,
+            minute,
+          },
+          allowWhileIdle: true,
+        },
+        sound: 'default',
+        actionTypeId: 'water-reminder',
+        extra: {
+          type: 'water-reminder'
+        }
+      }
+    ]
+  });
+  
+  console.log('Water reminder scheduled for', hour, ':', minute);
+};
+*/
+
+// Schedule meal suggestion
+/*
+export const scheduleCapacitorMealSuggestion = async (hour: number = 7, minute: number = 30) => {
+  // Get current location
+  const position = await Geolocation.getCurrentPosition();
+  const { latitude, longitude } = position.coords;
+  
+  // Fetch weather
+  const weather = await fetchWeatherData(latitude, longitude);
+  const suggestions = getWeatherBasedMealSuggestions(weather);
+  const meal = suggestions[0];
+  
+  await LocalNotifications.schedule({
+    notifications: [
+      {
+        title: `${meal.emoji} ${weather.icon} Breakfast Suggestion`,
+        body: `${meal.name} - ${meal.calories} cal | ${meal.protein}g protein`,
+        id: 2,
+        schedule: {
+          on: {
+            hour,
+            minute,
+          },
+          allowWhileIdle: true,
+        },
+        sound: 'default',
+        actionTypeId: 'meal-suggestion',
+        extra: {
+          type: 'meal-suggestion',
+          meal,
+          weather
+        }
+      }
+    ]
+  });
+  
+  console.log('Meal suggestion scheduled for', hour, ':', minute);
+};
+*/
+
+// Handle notification tap
+/*
+export const setupCapacitorNotificationListeners = () => {
+  LocalNotifications.addListener('localNotificationActionPerformed', (notification) => {
+    const data = notification.notification.extra;
+    
+    if (data.type === 'water-reminder') {
+      // Navigate to hydration tracking
+      // window.location.href = '/dashboard';
+    } else if (data.type === 'meal-suggestion') {
+      // Navigate to meal details
+      // window.location.href = '/diet';
+    }
+  });
+};
+*/
+
+// ============================================
+// BACKGROUND TASKS (for real-time weather updates)
+// ============================================
+
+/*
+For React Native:
+npm install react-native-background-fetch
+
+import BackgroundFetch from 'react-native-background-fetch';
+
+BackgroundFetch.configure({
+  minimumFetchInterval: 15, // minutes
+  stopOnTerminate: false,
+  startOnBoot: true,
+}, async (taskId) => {
+  console.log('[BackgroundFetch] taskId:', taskId);
+  
+  // Update weather and reschedule meal notification
+  const weather = await getWeather(true);
+  await scheduleMealSuggestion(7, 30);
+  
+  BackgroundFetch.finish(taskId);
+}, (error) => {
+  console.error('[BackgroundFetch] failed to start:', error);
+});
+*/
+
+// ============================================
+// STEP TRACKING INTEGRATION
+// ============================================
+
+/*
+For React Native with Expo:
+npm install expo-sensors
+
+import { Pedometer } from 'expo-sensors';
+
+// Real-time step tracking
+const subscription = Pedometer.watchStepCount(result => {
+  const steps = result.steps;
+  updateActivity({ steps });
+  
+  // Send notification when step goal reached
+  if (steps >= 10000) {
+    Notifications.scheduleNotificationAsync({
+      content: {
+        title: "🎉 Step Goal Achieved!",
+        body: "You've reached 10,000 steps today! Great job!",
+      },
+      trigger: null, // immediate
+    });
+  }
+});
+
+// Get historical steps
+const end = new Date();
+const start = new Date();
+start.setHours(0, 0, 0, 0);
+
+const result = await Pedometer.getStepCountAsync(start, end);
+console.log('Steps today:', result.steps);
+*/
+
+// ============================================
+// PLATFORM-SPECIFIC NOTES
+// ============================================
+
+/*
+iOS:
+- Add to Info.plist:
+  <key>NSUserNotificationsUsageDescription</key>
+  <string>We need permission to send you health reminders</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>We need your location to provide weather-based meal suggestions</string>
+
+Android:
+- Add to AndroidManifest.xml:
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+- Create notification channel (Android 8.0+):
+  const channel = {
+    id: 'health-reminders',
+    name: 'Health Reminders',
+    description: 'Daily health and wellness reminders',
+    importance: 4, // HIGH
+    sound: 'default',
+    vibration: true,
+  };
+*/
+
+// ============================================
+// TESTING CHECKLIST
+// ============================================
+
+/*
+1. Test notification permissions
+   - Grant permission
+   - Deny permission
+   - Revoke permission
+
+2. Test notification scheduling
+   - Schedule for 1 minute from now
+   - Verify notification appears
+   - Check notification content
+
+3. Test notification actions
+   - Tap notification
+   - Verify navigation works
+   - Check data is passed correctly
+
+4. Test background behavior
+   - Lock device
+   - Wait for notification
+   - Verify it appears
+
+5. Test weather integration
+   - Different weather conditions
+   - Location permission denied
+   - API failure handling
+
+6. Test step tracking
+   - Walk around
+   - Verify steps update
+   - Check goal notifications
+
+7. Test battery impact
+   - Monitor battery usage
+   - Optimize if needed
+   - Test on low battery
+
+8. Test different times
+   - Morning notifications
+   - Different time zones
+   - Daylight saving time
+*/
+
+export {};

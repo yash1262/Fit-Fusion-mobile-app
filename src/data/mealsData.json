@@ -1,0 +1,4944 @@
+{
+  "meals": [
+    {
+      "id": 1,
+      "name": "Fresh Fruit Bowl",
+      "ingredients": [
+        "banana",
+        "apple",
+        "grapes"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf4e",
+      "description": "Refreshing fruits",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1564093497595-593b96d80180?w=800&q=80"
+    },
+    {
+      "id": 2,
+      "name": "Smoothie Bowl",
+      "ingredients": [
+        "berries",
+        "yogurt",
+        "granola"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd64",
+      "description": "Cool breakfast",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=800&q=80"
+    },
+    {
+      "id": 3,
+      "name": "Chia Pudding",
+      "ingredients": [
+        "chia",
+        "almond milk",
+        "berries"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd63",
+      "description": "Cold pudding",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "250",
+      "imageUrl": "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=800&q=80"
+    },
+    {
+      "id": 4,
+      "name": "Cold Cereal",
+      "ingredients": [
+        "cornflakes",
+        "milk",
+        "banana"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "3 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd63",
+      "description": "Quick cold meal",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "300",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 5,
+      "name": "Yogurt Parfait",
+      "ingredients": [
+        "yogurt",
+        "granola",
+        "honey"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf68",
+      "description": "Layered delight",
+      "type": "veg",
+      "protein": "15g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80"
+    },
+    {
+      "id": 6,
+      "name": "Watermelon Juice",
+      "ingredients": [
+        "watermelon",
+        "mint"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf49",
+      "description": "Hydrating drink",
+      "type": "veg",
+      "protein": "1g",
+      "calories": "90",
+      "imageUrl": "https://images.unsplash.com/photo-1621510456681-2330135e5871?w=800&q=80"
+    },
+    {
+      "id": 7,
+      "name": "Avocado Toast",
+      "ingredients": [
+        "bread",
+        "avocado",
+        "tomato"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd51",
+      "description": "Creamy toast",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80"
+    },
+    {
+      "id": 8,
+      "name": "Mango Lassi",
+      "ingredients": [
+        "mango",
+        "yogurt",
+        "cardamom"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd6d",
+      "description": "Cool drink",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "200",
+      "imageUrl": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=800&q=80"
+    },
+    {
+      "id": 9,
+      "name": "Cold Oats",
+      "ingredients": [
+        "oats",
+        "milk",
+        "berries"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd63",
+      "description": "Overnight oats",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=800&q=80"
+    },
+    {
+      "id": 10,
+      "name": "Melon Salad",
+      "ingredients": [
+        "melon",
+        "mint",
+        "lime"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf48",
+      "description": "Fresh salad",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "120",
+      "imageUrl": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80"
+    },
+    {
+      "id": 11,
+      "name": "Curd Rice",
+      "ingredients": [
+        "rice",
+        "curd",
+        "cucumber"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Cool soothing",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&q=80"
+    },
+    {
+      "id": 12,
+      "name": "Greek Salad",
+      "ingredients": [
+        "lettuce",
+        "feta",
+        "olives"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd57",
+      "description": "Mediterranean",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "250",
+      "imageUrl": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80"
+    },
+    {
+      "id": 13,
+      "name": "Grilled Chicken Salad",
+      "ingredients": [
+        "chicken",
+        "lettuce",
+        "tomato"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd57",
+      "description": "Protein salad",
+      "type": "non-veg",
+      "protein": "32g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80"
+    },
+    {
+      "id": 14,
+      "name": "Lemon Rice",
+      "ingredients": [
+        "rice",
+        "lemon",
+        "peanuts"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf4b",
+      "description": "Tangy rice",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "300",
+      "imageUrl": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&q=80"
+    },
+    {
+      "id": 15,
+      "name": "Cold Pasta Salad",
+      "ingredients": [
+        "pasta",
+        "vegetables",
+        "olive oil"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf5d",
+      "description": "Chilled pasta",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80"
+    },
+    {
+      "id": 16,
+      "name": "Tuna Salad",
+      "ingredients": [
+        "tuna",
+        "lettuce",
+        "corn"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83d\udc1f",
+      "description": "Light fish",
+      "type": "non-veg",
+      "protein": "28g",
+      "calories": "260",
+      "imageUrl": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80"
+    },
+    {
+      "id": 17,
+      "name": "Quinoa Bowl",
+      "ingredients": [
+        "quinoa",
+        "vegetables",
+        "chickpeas"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd57",
+      "description": "Protein bowl",
+      "type": "veg",
+      "protein": "15g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=800&q=80"
+    },
+    {
+      "id": 18,
+      "name": "Cucumber Raita",
+      "ingredients": [
+        "cucumber",
+        "yogurt",
+        "mint"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "8 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd52",
+      "description": "Cooling side",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "120",
+      "imageUrl": "https://images.unsplash.com/photo-1603046891726-36bfd957e0bf?w=800&q=80"
+    },
+    {
+      "id": 19,
+      "name": "Sprouts Salad",
+      "ingredients": [
+        "moong sprouts",
+        "tomato",
+        "lemon"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd57",
+      "description": "Healthy sprouts",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "150",
+      "imageUrl": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80"
+    },
+    {
+      "id": 20,
+      "name": "Gazpacho",
+      "ingredients": [
+        "tomato",
+        "cucumber",
+        "pepper"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf45",
+      "description": "Cold soup",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "150",
+      "imageUrl": "https://images.unsplash.com/photo-1541529086526-db283c563270?w=800&q=80"
+    },
+    {
+      "id": 21,
+      "name": "Vegetable Wrap",
+      "ingredients": [
+        "tortilla",
+        "vegetables",
+        "hummus"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf2f",
+      "description": "Light wrap",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=800&q=80"
+    },
+    {
+      "id": 22,
+      "name": "Sushi Rolls",
+      "ingredients": [
+        "rice",
+        "fish",
+        "vegetables"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf63",
+      "description": "Japanese rolls",
+      "type": "non-veg",
+      "protein": "20g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 23,
+      "name": "Grilled Fish",
+      "ingredients": [
+        "fish",
+        "lemon",
+        "herbs"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83d\udc1f",
+      "description": "Light grilled",
+      "type": "non-veg",
+      "protein": "30g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80"
+    },
+    {
+      "id": 24,
+      "name": "Paneer Salad",
+      "ingredients": [
+        "paneer",
+        "lettuce",
+        "tomato"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\uddc0",
+      "description": "Protein salad",
+      "type": "veg",
+      "protein": "18g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80"
+    },
+    {
+      "id": 25,
+      "name": "Cold Noodles",
+      "ingredients": [
+        "noodles",
+        "vegetables",
+        "peanut sauce"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf5c",
+      "description": "Chilled noodles",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80"
+    },
+    {
+      "id": 26,
+      "name": "Fish Tacos",
+      "ingredients": [
+        "fish",
+        "tortilla",
+        "cabbage"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf2e",
+      "description": "Light tacos",
+      "type": "non-veg",
+      "protein": "25g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80"
+    },
+    {
+      "id": 27,
+      "name": "Tofu Salad",
+      "ingredients": [
+        "tofu",
+        "vegetables",
+        "sesame"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd57",
+      "description": "Vegan protein",
+      "type": "veg",
+      "protein": "16g",
+      "calories": "260",
+      "imageUrl": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80"
+    },
+    {
+      "id": 28,
+      "name": "Grilled Prawns",
+      "ingredients": [
+        "prawns",
+        "garlic",
+        "lemon"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd90",
+      "description": "Seafood delight",
+      "type": "non-veg",
+      "protein": "28g",
+      "calories": "240",
+      "imageUrl": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&q=80"
+    },
+    {
+      "id": 29,
+      "name": "Vegetable Stir Fry",
+      "ingredients": [
+        "vegetables",
+        "soy sauce"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd58",
+      "description": "Quick stir fry",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800&q=80"
+    },
+    {
+      "id": 30,
+      "name": "Chicken Tikka",
+      "ingredients": [
+        "chicken",
+        "yogurt",
+        "spices"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf57",
+      "description": "Grilled chicken",
+      "type": "non-veg",
+      "protein": "35g",
+      "calories": "300",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 31,
+      "name": "Coconut Water",
+      "ingredients": [
+        "coconut",
+        "lime"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "2 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Electrolyte drink",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "60",
+      "imageUrl": "https://images.unsplash.com/photo-1585238341710-4a1b0d2d1b5d?w=800&q=80"
+    },
+    {
+      "id": 32,
+      "name": "Fruit Popsicle",
+      "ingredients": [
+        "mixed fruits",
+        "juice"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf61",
+      "description": "Frozen treat",
+      "type": "veg",
+      "protein": "1g",
+      "calories": "80",
+      "imageUrl": "https://images.unsplash.com/photo-1564093497595-593b96d80180?w=800&q=80"
+    },
+    {
+      "id": 33,
+      "name": "Cucumber Sandwich",
+      "ingredients": [
+        "bread",
+        "cucumber",
+        "cream cheese"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "8 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ufffd\ufffd",
+      "description": "Light sandwich",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1528736235302-52922df5c122?w=800&q=80"
+    },
+    {
+      "id": 34,
+      "name": "Iced Coffee",
+      "ingredients": [
+        "coffee",
+        "milk",
+        "ice"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\u2615",
+      "description": "Cool caffeine",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "120",
+      "imageUrl": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=800&q=80"
+    },
+    {
+      "id": 35,
+      "name": "Fruit Smoothie",
+      "ingredients": [
+        "banana",
+        "berries",
+        "yogurt"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd64",
+      "description": "Blended drink",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "200",
+      "imageUrl": "https://images.unsplash.com/photo-1564093497595-593b96d80180?w=800&q=80"
+    },
+    {
+      "id": 36,
+      "name": "Hummus & Veggies",
+      "ingredients": [
+        "chickpeas",
+        "carrot",
+        "cucumber"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd55",
+      "description": "Healthy dip",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80"
+    },
+    {
+      "id": 37,
+      "name": "Frozen Yogurt",
+      "ingredients": [
+        "yogurt",
+        "berries",
+        "honey"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf66",
+      "description": "Cool dessert",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "150",
+      "imageUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80"
+    },
+    {
+      "id": 38,
+      "name": "Veggie Sticks",
+      "ingredients": [
+        "carrot",
+        "celery",
+        "ranch"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd55",
+      "description": "Crunchy snack",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "100",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80"
+    },
+    {
+      "id": 39,
+      "name": "Cold Brew",
+      "ingredients": [
+        "coffee",
+        "milk",
+        "ice"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\u2615",
+      "description": "Smooth coffee",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "100",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 40,
+      "name": "Buttermilk",
+      "ingredients": [
+        "curd",
+        "water",
+        "salt"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd5b",
+      "description": "Cooling drink",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "80",
+      "imageUrl": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=800&q=80"
+    },
+    {
+      "id": 41,
+      "name": "Hot Oatmeal",
+      "ingredients": [
+        "oats",
+        "milk",
+        "honey"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\udd63",
+      "description": "Warm breakfast",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=800&q=80"
+    },
+    {
+      "id": 42,
+      "name": "Scrambled Eggs",
+      "ingredients": [
+        "eggs",
+        "butter",
+        "milk"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "8 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf73",
+      "description": "Protein breakfast",
+      "type": "non-veg",
+      "protein": "18g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80"
+    },
+    {
+      "id": 43,
+      "name": "Pancakes",
+      "ingredients": [
+        "flour",
+        "milk",
+        "eggs",
+        "syrup"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\udd5e",
+      "description": "Fluffy pancakes",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "400",
+      "imageUrl": "https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=800&q=80"
+    },
+    {
+      "id": 44,
+      "name": "French Toast",
+      "ingredients": [
+        "bread",
+        "eggs",
+        "cinnamon"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "12 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ufffd\ufffd",
+      "description": "Sweet toast",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80"
+    },
+    {
+      "id": 45,
+      "name": "Porridge",
+      "ingredients": [
+        "oats",
+        "milk",
+        "banana"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\udd63",
+      "description": "Creamy porridge",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=800&q=80"
+    },
+    {
+      "id": 46,
+      "name": "Egg Benedict",
+      "ingredients": [
+        "eggs",
+        "bread",
+        "ham"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf73",
+      "description": "Classic breakfast",
+      "type": "non-veg",
+      "protein": "22g",
+      "calories": "450",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80"
+    },
+    {
+      "id": 47,
+      "name": "Waffles",
+      "ingredients": [
+        "flour",
+        "eggs",
+        "milk"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\uddc7",
+      "description": "Crispy waffles",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=800&q=80"
+    },
+    {
+      "id": 48,
+      "name": "Hot Chocolate",
+      "ingredients": [
+        "cocoa",
+        "milk",
+        "sugar"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\u2615",
+      "description": "Warm drink",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "250",
+      "imageUrl": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=800&q=80"
+    },
+    {
+      "id": 49,
+      "name": "Breakfast Burrito",
+      "ingredients": [
+        "tortilla",
+        "eggs",
+        "cheese"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf2f",
+      "description": "Filling wrap",
+      "type": "veg",
+      "protein": "20g",
+      "calories": "420",
+      "imageUrl": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=800&q=80"
+    },
+    {
+      "id": 50,
+      "name": "Masala Chai",
+      "ingredients": [
+        "tea",
+        "milk",
+        "spices"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\u2615",
+      "description": "Spiced tea",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "120",
+      "imageUrl": "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&q=80"
+    },
+    {
+      "id": 51,
+      "name": "Chicken Soup",
+      "ingredients": [
+        "chicken",
+        "vegetables",
+        "noodles"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf72",
+      "description": "Warm soup",
+      "type": "non-veg",
+      "protein": "25g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 52,
+      "name": "Dal Tadka",
+      "ingredients": [
+        "toor dal",
+        "tomato",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf5b",
+      "description": "Lentil curry",
+      "type": "veg",
+      "protein": "18g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80"
+    },
+    {
+      "id": 53,
+      "name": "Rajma Chawal",
+      "ingredients": [
+        "kidney beans",
+        "rice",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Bean rice",
+      "type": "veg",
+      "protein": "20g",
+      "calories": "450",
+      "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80"
+    },
+    {
+      "id": 54,
+      "name": "Butter Chicken",
+      "ingredients": [
+        "chicken",
+        "butter",
+        "cream"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "40 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf57",
+      "description": "Rich curry",
+      "type": "non-veg",
+      "protein": "35g",
+      "calories": "520",
+      "imageUrl": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&q=80"
+    },
+    {
+      "id": 55,
+      "name": "Vegetable Pulao",
+      "ingredients": [
+        "rice",
+        "vegetables",
+        "ghee"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Spiced rice",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800&q=80"
+    },
+    {
+      "id": 56,
+      "name": "Mutton Curry",
+      "ingredients": [
+        "mutton",
+        "onion",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "50 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf56",
+      "description": "Spicy curry",
+      "type": "non-veg",
+      "protein": "32g",
+      "calories": "480",
+      "imageUrl": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80"
+    },
+    {
+      "id": 57,
+      "name": "Chole Bhature",
+      "ingredients": [
+        "chickpeas",
+        "flour",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "40 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Punjabi dish",
+      "type": "veg",
+      "protein": "15g",
+      "calories": "550",
+      "imageUrl": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80"
+    },
+    {
+      "id": 58,
+      "name": "Biryani",
+      "ingredients": [
+        "rice",
+        "chicken",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "45 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf5b",
+      "description": "Aromatic rice",
+      "type": "non-veg",
+      "protein": "28g",
+      "calories": "580",
+      "imageUrl": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&q=80"
+    },
+    {
+      "id": 59,
+      "name": "Paneer Butter Masala",
+      "ingredients": [
+        "paneer",
+        "butter",
+        "cream"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\uddc0",
+      "description": "Creamy curry",
+      "type": "veg",
+      "protein": "22g",
+      "calories": "420",
+      "imageUrl": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&q=80"
+    },
+    {
+      "id": 60,
+      "name": "Fish Curry",
+      "ingredients": [
+        "fish",
+        "coconut",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83d\udc1f",
+      "description": "Coastal curry",
+      "type": "non-veg",
+      "protein": "30g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80"
+    },
+    {
+      "id": 61,
+      "name": "Hot Pot",
+      "ingredients": [
+        "vegetables",
+        "tofu",
+        "broth"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf72",
+      "description": "Asian hot pot",
+      "type": "veg",
+      "protein": "15g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1588566565463-180a5b2090d2?w=800&q=80"
+    },
+    {
+      "id": 62,
+      "name": "Ramen",
+      "ingredients": [
+        "noodles",
+        "egg",
+        "broth"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf5c",
+      "description": "Japanese noodles",
+      "type": "non-veg",
+      "protein": "20g",
+      "calories": "450",
+      "imageUrl": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80"
+    },
+    {
+      "id": 63,
+      "name": "Beef Stew",
+      "ingredients": [
+        "beef",
+        "potato",
+        "carrot"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "45 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf72",
+      "description": "Hearty stew",
+      "type": "non-veg",
+      "protein": "28g",
+      "calories": "480",
+      "imageUrl": "https://images.unsplash.com/photo-1588566565463-180a5b2090d2?w=800&q=80"
+    },
+    {
+      "id": 64,
+      "name": "Pasta Alfredo",
+      "ingredients": [
+        "pasta",
+        "cream",
+        "cheese"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf5d",
+      "description": "Creamy pasta",
+      "type": "veg",
+      "protein": "18g",
+      "calories": "520",
+      "imageUrl": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80"
+    },
+    {
+      "id": 65,
+      "name": "Roast Chicken",
+      "ingredients": [
+        "chicken",
+        "herbs",
+        "vegetables"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "60 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf57",
+      "description": "Oven roasted",
+      "type": "non-veg",
+      "protein": "40g",
+      "calories": "550",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 66,
+      "name": "Shepherds Pie",
+      "ingredients": [
+        "meat",
+        "potato",
+        "vegetables"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "50 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\udd67",
+      "description": "Comfort food",
+      "type": "non-veg",
+      "protein": "25g",
+      "calories": "480",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 67,
+      "name": "Lasagna",
+      "ingredients": [
+        "pasta",
+        "cheese",
+        "meat sauce"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "55 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf5d",
+      "description": "Layered pasta",
+      "type": "non-veg",
+      "protein": "30g",
+      "calories": "580",
+      "imageUrl": "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800&q=80"
+    },
+    {
+      "id": 68,
+      "name": "Vegetable Casserole",
+      "ingredients": [
+        "vegetables",
+        "cheese",
+        "cream"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "40 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ufffd\ufffd",
+      "description": "Baked dish",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1588566565463-180a5b2090d2?w=800&q=80"
+    },
+    {
+      "id": 69,
+      "name": "Beef Stroganoff",
+      "ingredients": [
+        "beef",
+        "mushroom",
+        "cream"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf56",
+      "description": "Russian dish",
+      "type": "non-veg",
+      "protein": "35g",
+      "calories": "520",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 70,
+      "name": "Mac and Cheese",
+      "ingredients": [
+        "pasta",
+        "cheese",
+        "milk"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\uddc0",
+      "description": "Cheesy pasta",
+      "type": "veg",
+      "protein": "20g",
+      "calories": "450",
+      "imageUrl": "https://images.unsplash.com/photo-1543339494-b4cd4f7ba686?w=800&q=80"
+    },
+    {
+      "id": 71,
+      "name": "Hot Tea",
+      "ingredients": [
+        "tea",
+        "milk",
+        "sugar"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\u2615",
+      "description": "Warm beverage",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "80",
+      "imageUrl": "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&q=80"
+    },
+    {
+      "id": 72,
+      "name": "Pakora",
+      "ingredients": [
+        "vegetables",
+        "flour",
+        "spices"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\udd5f",
+      "description": "Fried snack",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80"
+    },
+    {
+      "id": 73,
+      "name": "Samosa",
+      "ingredients": [
+        "potato",
+        "peas",
+        "pastry"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\udd5f",
+      "description": "Crispy snack",
+      "type": "veg",
+      "protein": "5g",
+      "calories": "250",
+      "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80"
+    },
+    {
+      "id": 74,
+      "name": "Tomato Soup",
+      "ingredients": [
+        "tomato",
+        "cream",
+        "herbs"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf45",
+      "description": "Warm soup",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "120",
+      "imageUrl": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80"
+    },
+    {
+      "id": 75,
+      "name": "Grilled Sandwich",
+      "ingredients": [
+        "bread",
+        "cheese",
+        "vegetables"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\udd6a",
+      "description": "Toasted sandwich",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1528736235302-52922df5c122?w=800&q=80"
+    },
+    {
+      "id": 76,
+      "name": "Muffin",
+      "ingredients": [
+        "flour",
+        "eggs",
+        "sugar"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\uddc1",
+      "description": "Sweet treat",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=800&q=80"
+    },
+    {
+      "id": 77,
+      "name": "Hot Chocolate Cookies",
+      "ingredients": [
+        "flour",
+        "chocolate",
+        "butter"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf6a",
+      "description": "Warm cookies",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "200",
+      "imageUrl": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=800&q=80"
+    },
+    {
+      "id": 78,
+      "name": "Corn Soup",
+      "ingredients": [
+        "corn",
+        "milk",
+        "butter"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf3d",
+      "description": "Creamy soup",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80"
+    },
+    {
+      "id": 79,
+      "name": "Toast with Jam",
+      "ingredients": [
+        "bread",
+        "butter",
+        "jam"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf5e",
+      "description": "Simple snack",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "150",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80"
+    },
+    {
+      "id": 80,
+      "name": "Hot Coffee",
+      "ingredients": [
+        "coffee",
+        "milk",
+        "sugar"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\u2615",
+      "description": "Energy boost",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "100",
+      "imageUrl": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=800&q=80"
+    },
+    {
+      "id": 81,
+      "name": "Masala Dosa",
+      "ingredients": [
+        "rice",
+        "urad dal",
+        "potato"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Crispy crepe",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80"
+    },
+    {
+      "id": 82,
+      "name": "Poha",
+      "ingredients": [
+        "flattened rice",
+        "onion",
+        "peanuts"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Light breakfast",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80"
+    },
+    {
+      "id": 83,
+      "name": "Idli Sambar",
+      "ingredients": [
+        "rice",
+        "urad dal",
+        "vegetables"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Steamed cakes",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80"
+    },
+    {
+      "id": 84,
+      "name": "Aloo Paratha",
+      "ingredients": [
+        "wheat flour",
+        "potato",
+        "ghee"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Stuffed flatbread",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "400",
+      "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80"
+    },
+    {
+      "id": 85,
+      "name": "Upma",
+      "ingredients": [
+        "semolina",
+        "vegetables",
+        "spices"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf5b",
+      "description": "Savory breakfast",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "300",
+      "imageUrl": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80"
+    },
+    {
+      "id": 86,
+      "name": "Bread Pakora",
+      "ingredients": [
+        "bread",
+        "potato",
+        "spices"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd6a",
+      "description": "Fried bread",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80"
+    },
+    {
+      "id": 87,
+      "name": "Medu Vada",
+      "ingredients": [
+        "urad dal",
+        "spices"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf69",
+      "description": "Crispy fritters",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 88,
+      "name": "Puri Bhaji",
+      "ingredients": [
+        "wheat flour",
+        "potato",
+        "spices"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Fried bread curry",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "450",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 89,
+      "name": "Sabudana Khichdi",
+      "ingredients": [
+        "tapioca",
+        "peanuts",
+        "potato"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Pearl dish",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80"
+    },
+    {
+      "id": 90,
+      "name": "Ginger Tea",
+      "ingredients": [
+        "tea",
+        "ginger",
+        "milk"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\u2615",
+      "description": "Warming tea",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "90",
+      "imageUrl": "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&q=80"
+    },
+    {
+      "id": 91,
+      "name": "Vegetable Khichdi",
+      "ingredients": [
+        "rice",
+        "moong dal",
+        "vegetables"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf72",
+      "description": "Comfort food",
+      "type": "veg",
+      "protein": "18g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80"
+    },
+    {
+      "id": 92,
+      "name": "Kadhi Pakora",
+      "ingredients": [
+        "yogurt",
+        "gram flour",
+        "pakoras"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf5b",
+      "description": "Yogurt curry",
+      "type": "veg",
+      "protein": "15g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80"
+    },
+    {
+      "id": 93,
+      "name": "Pav Bhaji",
+      "ingredients": [
+        "vegetables",
+        "butter",
+        "bread"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf5e",
+      "description": "Street food",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "420",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 94,
+      "name": "Misal Pav",
+      "ingredients": [
+        "sprouts",
+        "spices",
+        "bread"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf5e",
+      "description": "Spicy curry",
+      "type": "veg",
+      "protein": "18g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 95,
+      "name": "Vada Pav",
+      "ingredients": [
+        "potato",
+        "bread",
+        "chutney"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf54",
+      "description": "Mumbai burger",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 96,
+      "name": "Pani Puri",
+      "ingredients": [
+        "semolina",
+        "potato",
+        "spiced water"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd5f",
+      "description": "Street snack",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "200",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 97,
+      "name": "Bhel Puri",
+      "ingredients": [
+        "puffed rice",
+        "vegetables",
+        "chutney"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd57",
+      "description": "Crunchy mix",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "250",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 98,
+      "name": "Dahi Vada",
+      "ingredients": [
+        "urad dal",
+        "yogurt",
+        "chutney"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf69",
+      "description": "Yogurt fritters",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 99,
+      "name": "Aloo Tikki",
+      "ingredients": [
+        "potato",
+        "spices",
+        "chutney"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd54",
+      "description": "Potato patties",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 100,
+      "name": "Chaat",
+      "ingredients": [
+        "potato",
+        "chickpeas",
+        "yogurt"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd57",
+      "description": "Tangy snack",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 101,
+      "name": "Palak Paneer",
+      "ingredients": [
+        "spinach",
+        "paneer",
+        "cream"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd6c",
+      "description": "Spinach curry",
+      "type": "veg",
+      "protein": "20g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&q=80"
+    },
+    {
+      "id": 102,
+      "name": "Malai Kofta",
+      "ingredients": [
+        "paneer",
+        "potato",
+        "cream"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "40 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\uddc6",
+      "description": "Creamy curry",
+      "type": "veg",
+      "protein": "18g",
+      "calories": "450",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 103,
+      "name": "Dum Aloo",
+      "ingredients": [
+        "potato",
+        "yogurt",
+        "spices"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd54",
+      "description": "Spicy potato",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 104,
+      "name": "Baingan Bharta",
+      "ingredients": [
+        "eggplant",
+        "tomato",
+        "spices"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf46",
+      "description": "Smoky curry",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 105,
+      "name": "Mushroom Masala",
+      "ingredients": [
+        "mushroom",
+        "onion",
+        "spices"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf44",
+      "description": "Mushroom curry",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 106,
+      "name": "Egg Curry",
+      "ingredients": [
+        "eggs",
+        "tomato",
+        "spices"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd5a",
+      "description": "Spicy egg",
+      "type": "non-veg",
+      "protein": "18g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80"
+    },
+    {
+      "id": 107,
+      "name": "Chicken Curry",
+      "ingredients": [
+        "chicken",
+        "onion",
+        "spices"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "40 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf57",
+      "description": "Classic curry",
+      "type": "non-veg",
+      "protein": "32g",
+      "calories": "420",
+      "imageUrl": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80"
+    },
+    {
+      "id": 108,
+      "name": "Prawn Masala",
+      "ingredients": [
+        "prawns",
+        "coconut",
+        "spices"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd90",
+      "description": "Seafood curry",
+      "type": "non-veg",
+      "protein": "28g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&q=80"
+    },
+    {
+      "id": 109,
+      "name": "Keema Pav",
+      "ingredients": [
+        "minced meat",
+        "bread",
+        "spices"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf5e",
+      "description": "Meat bread",
+      "type": "non-veg",
+      "protein": "30g",
+      "calories": "480",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 110,
+      "name": "Tandoori Chicken",
+      "ingredients": [
+        "chicken",
+        "yogurt",
+        "spices"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "45 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf57",
+      "description": "Grilled chicken",
+      "type": "non-veg",
+      "protein": "35g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 111,
+      "name": "Bhajiya",
+      "ingredients": [
+        "onion",
+        "gram flour",
+        "spices"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\uddc5",
+      "description": "Onion fritters",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 112,
+      "name": "Kachori",
+      "ingredients": [
+        "flour",
+        "lentils",
+        "spices"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd5f",
+      "description": "Stuffed snack",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 113,
+      "name": "Bread Roll",
+      "ingredients": [
+        "bread",
+        "potato",
+        "spices"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd56",
+      "description": "Fried roll",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "300",
+      "imageUrl": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80"
+    },
+    {
+      "id": 114,
+      "name": "Cutlet",
+      "ingredients": [
+        "potato",
+        "vegetables",
+        "breadcrumbs"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd54",
+      "description": "Crispy patty",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "250",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 115,
+      "name": "Spring Roll",
+      "ingredients": [
+        "vegetables",
+        "wrapper"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf2f",
+      "description": "Crispy roll",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80"
+    },
+    {
+      "id": 116,
+      "name": "Momos",
+      "ingredients": [
+        "flour",
+        "vegetables",
+        "spices"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd5f",
+      "description": "Steamed dumplings",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "300",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 117,
+      "name": "Bonda",
+      "ingredients": [
+        "potato",
+        "gram flour",
+        "spices"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83e\udd54",
+      "description": "Fried balls",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "240",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 118,
+      "name": "Masala Chai",
+      "ingredients": [
+        "tea",
+        "ginger",
+        "spices"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\u2615",
+      "description": "Spiced tea",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "90",
+      "imageUrl": "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&q=80"
+    },
+    {
+      "id": 119,
+      "name": "Corn Bhel",
+      "ingredients": [
+        "corn",
+        "spices",
+        "lemon"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf3d",
+      "description": "Spicy corn",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 120,
+      "name": "Maggi",
+      "ingredients": [
+        "noodles",
+        "vegetables",
+        "spices"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "rainy"
+      ],
+      "image": "\ud83c\udf5c",
+      "description": "Instant noodles",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 121,
+      "name": "Dosa",
+      "ingredients": [
+        "rice",
+        "urad dal"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Crispy crepe",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80"
+    },
+    {
+      "id": 122,
+      "name": "Idli",
+      "ingredients": [
+        "rice",
+        "urad dal"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Steamed cakes",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "200",
+      "imageUrl": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80"
+    },
+    {
+      "id": 123,
+      "name": "Appam",
+      "ingredients": [
+        "rice",
+        "coconut"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Rice pancake",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 124,
+      "name": "Uttapam",
+      "ingredients": [
+        "rice",
+        "vegetables"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Thick pancake",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 125,
+      "name": "Pesarattu",
+      "ingredients": [
+        "moong dal",
+        "rice"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Green crepe",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "300",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 126,
+      "name": "Rava Dosa",
+      "ingredients": [
+        "semolina",
+        "rice flour"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Crispy dosa",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "250",
+      "imageUrl": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80"
+    },
+    {
+      "id": 127,
+      "name": "Coconut Chutney",
+      "ingredients": [
+        "coconut",
+        "green chili"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Side dish",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "120",
+      "imageUrl": "https://images.unsplash.com/photo-1585238341710-4a1b0d2d1b5d?w=800&q=80"
+    },
+    {
+      "id": 128,
+      "name": "Lemon Water",
+      "ingredients": [
+        "lemon",
+        "water",
+        "salt"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "2 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf4b",
+      "description": "Hydrating drink",
+      "type": "veg",
+      "protein": "0g",
+      "calories": "20",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 129,
+      "name": "Buttermilk",
+      "ingredients": [
+        "curd",
+        "water",
+        "spices"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd5b",
+      "description": "Cooling drink",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "80",
+      "imageUrl": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=800&q=80"
+    },
+    {
+      "id": 130,
+      "name": "Fruit Chaat",
+      "ingredients": [
+        "fruits",
+        "chaat masala",
+        "lemon"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf4e",
+      "description": "Spicy fruits",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "150",
+      "imageUrl": "https://images.unsplash.com/photo-1564093497595-593b96d80180?w=800&q=80"
+    },
+    {
+      "id": 131,
+      "name": "Sambar Rice",
+      "ingredients": [
+        "rice",
+        "toor dal",
+        "vegetables"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "South Indian",
+      "type": "veg",
+      "protein": "15g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&q=80"
+    },
+    {
+      "id": 132,
+      "name": "Rasam Rice",
+      "ingredients": [
+        "rice",
+        "tomato",
+        "tamarind"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Tangy rice",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&q=80"
+    },
+    {
+      "id": 133,
+      "name": "Bisi Bele Bath",
+      "ingredients": [
+        "rice",
+        "dal",
+        "vegetables"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Mixed rice",
+      "type": "veg",
+      "protein": "18g",
+      "calories": "400",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 134,
+      "name": "Puliyogare",
+      "ingredients": [
+        "rice",
+        "tamarind",
+        "peanuts"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Tamarind rice",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 135,
+      "name": "Coconut Rice",
+      "ingredients": [
+        "rice",
+        "coconut",
+        "curry leaves"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Coconut flavored",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "300",
+      "imageUrl": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&q=80"
+    },
+    {
+      "id": 136,
+      "name": "Tomato Rice",
+      "ingredients": [
+        "rice",
+        "tomato",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ufffd\ufffd",
+      "description": "Tangy rice",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&q=80"
+    },
+    {
+      "id": 137,
+      "name": "Vegetable Biryani",
+      "ingredients": [
+        "rice",
+        "vegetables",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "40 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf5b",
+      "description": "Aromatic rice",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "420",
+      "imageUrl": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&q=80"
+    },
+    {
+      "id": 138,
+      "name": "Fish Fry",
+      "ingredients": [
+        "fish",
+        "spices",
+        "oil"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83d\udc1f",
+      "description": "Crispy fish",
+      "type": "non-veg",
+      "protein": "28g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80"
+    },
+    {
+      "id": 139,
+      "name": "Prawn Curry",
+      "ingredients": [
+        "prawns",
+        "coconut",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd90",
+      "description": "Coastal curry",
+      "type": "non-veg",
+      "protein": "30g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80"
+    },
+    {
+      "id": 140,
+      "name": "Meen Curry",
+      "ingredients": [
+        "fish",
+        "tamarind",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83d\udc1f",
+      "description": "Fish curry",
+      "type": "non-veg",
+      "protein": "32g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80"
+    },
+    {
+      "id": 141,
+      "name": "Avial",
+      "ingredients": [
+        "vegetables",
+        "coconut",
+        "yogurt"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Mixed vegetables",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 142,
+      "name": "Thoran",
+      "ingredients": [
+        "vegetables",
+        "coconut",
+        "mustard"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Dry curry",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 143,
+      "name": "Kootu",
+      "ingredients": [
+        "vegetables",
+        "dal",
+        "coconut"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Lentil curry",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 144,
+      "name": "Olan",
+      "ingredients": [
+        "pumpkin",
+        "coconut milk"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Mild curry",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "200",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 145,
+      "name": "Erissery",
+      "ingredients": [
+        "pumpkin",
+        "beans",
+        "coconut"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Festive dish",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 146,
+      "name": "Pachadi",
+      "ingredients": [
+        "vegetables",
+        "yogurt",
+        "coconut"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Yogurt curry",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 147,
+      "name": "Kalan",
+      "ingredients": [
+        "yam",
+        "banana",
+        "yogurt"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf4c",
+      "description": "Thick curry",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "250",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 148,
+      "name": "Fish Moilee",
+      "ingredients": [
+        "fish",
+        "coconut milk",
+        "spices"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83d\udc1f",
+      "description": "Mild fish curry",
+      "type": "non-veg",
+      "protein": "28g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80"
+    },
+    {
+      "id": 149,
+      "name": "Appam with Stew",
+      "ingredients": [
+        "rice",
+        "coconut",
+        "vegetables"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Pancake stew",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1588566565463-180a5b2090d2?w=800&q=80"
+    },
+    {
+      "id": 150,
+      "name": "Karimeen Fry",
+      "ingredients": [
+        "fish",
+        "spices",
+        "oil"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83d\udc1f",
+      "description": "Pearl spot fry",
+      "type": "non-veg",
+      "protein": "30g",
+      "calories": "340",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 151,
+      "name": "Banana Chips",
+      "ingredients": [
+        "banana",
+        "oil",
+        "salt"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf4c",
+      "description": "Crispy chips",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=800&q=80"
+    },
+    {
+      "id": 152,
+      "name": "Murukku",
+      "ingredients": [
+        "rice flour",
+        "urad dal"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd68",
+      "description": "Crunchy snack",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 153,
+      "name": "Mixture",
+      "ingredients": [
+        "gram flour",
+        "peanuts",
+        "spices"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd5c",
+      "description": "Savory mix",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 154,
+      "name": "Sundal",
+      "ingredients": [
+        "chickpeas",
+        "coconut",
+        "spices"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Protein snack",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "200",
+      "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80"
+    },
+    {
+      "id": 155,
+      "name": "Payasam",
+      "ingredients": [
+        "rice",
+        "milk",
+        "jaggery"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd5b",
+      "description": "Sweet dessert",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 156,
+      "name": "Unniyappam",
+      "ingredients": [
+        "rice",
+        "banana",
+        "jaggery"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf4c",
+      "description": "Sweet fritters",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 157,
+      "name": "Achappam",
+      "ingredients": [
+        "rice flour",
+        "coconut milk"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Rose cookies",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 158,
+      "name": "Tender Coconut",
+      "ingredients": [
+        "coconut water"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "2 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd65",
+      "description": "Natural drink",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "50",
+      "imageUrl": "https://images.unsplash.com/photo-1585238341710-4a1b0d2d1b5d?w=800&q=80"
+    },
+    {
+      "id": 159,
+      "name": "Lime Juice",
+      "ingredients": [
+        "lime",
+        "water",
+        "sugar"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83c\udf4b",
+      "description": "Refreshing drink",
+      "type": "veg",
+      "protein": "0g",
+      "calories": "80",
+      "imageUrl": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=800&q=80"
+    },
+    {
+      "id": 160,
+      "name": "Neer Mor",
+      "ingredients": [
+        "buttermilk",
+        "ginger",
+        "curry leaves"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "humid"
+      ],
+      "image": "\ud83e\udd5b",
+      "description": "Spiced buttermilk",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "70",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 161,
+      "name": "Bread Toast",
+      "ingredients": [
+        "bread",
+        "butter",
+        "jam"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf5e",
+      "description": "Simple toast",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "250",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80"
+    },
+    {
+      "id": 162,
+      "name": "Boiled Eggs",
+      "ingredients": [
+        "eggs",
+        "salt",
+        "pepper"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd5a",
+      "description": "Protein breakfast",
+      "type": "non-veg",
+      "protein": "12g",
+      "calories": "140",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80"
+    },
+    {
+      "id": 163,
+      "name": "Cornflakes",
+      "ingredients": [
+        "cornflakes",
+        "milk",
+        "sugar"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "3 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd63",
+      "description": "Quick breakfast",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 164,
+      "name": "Sandwich",
+      "ingredients": [
+        "bread",
+        "vegetables",
+        "cheese"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd6a",
+      "description": "Veggie sandwich",
+      "type": "  veg",
+      "protein": "10g",
+      "calories": "300",
+      "imageUrl": "https://images.unsplash.com/photo-1528736235302-52922df5c122?w=800&q=80"
+    },
+    {
+      "id": 165,
+      "name": "Omelette",
+      "ingredients": [
+        "eggs",
+        "onion",
+        "tomato"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf73",
+      "description": "Fluffy omelette",
+      "type": "non-veg",
+      "protein": "16g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 166,
+      "name": "Muesli",
+      "ingredients": [
+        "oats",
+        "nuts",
+        "dried fruits"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd63",
+      "description": "Healthy mix",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 167,
+      "name": "Bagel",
+      "ingredients": [
+        "bagel",
+        "cream cheese"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd6f",
+      "description": "Classic bagel",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 168,
+      "name": "Croissant",
+      "ingredients": [
+        "flour",
+        "butter"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd50",
+      "description": "Flaky pastry",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 169,
+      "name": "English Breakfast",
+      "ingredients": [
+        "eggs",
+        "beans",
+        "toast"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf73",
+      "description": "Full breakfast",
+      "type": "non-veg",
+      "protein": "22g",
+      "calories": "450",
+      "imageUrl": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80"
+    },
+    {
+      "id": 170,
+      "name": "Coffee",
+      "ingredients": [
+        "coffee",
+        "milk",
+        "sugar"
+      ],
+      "tags": [
+        "breakfast"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\u2615",
+      "description": "Morning coffee",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "100",
+      "imageUrl": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=800&q=80"
+    },
+    {
+      "id": 171,
+      "name": "Vegetable Sandwich",
+      "ingredients": [
+        "bread",
+        "vegetables",
+        "mayo"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd6a",
+      "description": "Healthy sandwich",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1528736235302-52922df5c122?w=800&q=80"
+    },
+    {
+      "id": 172,
+      "name": "Chicken Sandwich",
+      "ingredients": [
+        "bread",
+        "chicken",
+        "lettuce"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd6a",
+      "description": "Protein sandwich",
+      "type": "non-veg",
+      "protein": "25g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 173,
+      "name": "Burger",
+      "ingredients": [
+        "bun",
+        "patty",
+        "vegetables"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf54",
+      "description": "Classic burger",
+      "type": "non-veg",
+      "protein": "20g",
+      "calories": "450",
+      "imageUrl": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80"
+    },
+    {
+      "id": 174,
+      "name": "Pizza",
+      "ingredients": [
+        "flour",
+        "cheese",
+        "vegetables"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf55",
+      "description": "Italian pizza",
+      "type": "veg",
+      "protein": "15g",
+      "calories": "520",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 175,
+      "name": "Pasta",
+      "ingredients": [
+        "pasta",
+        "tomato sauce",
+        "cheese"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf5d",
+      "description": "Italian pasta",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "400",
+      "imageUrl": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80"
+    },
+    {
+      "id": 176,
+      "name": "Fried Rice",
+      "ingredients": [
+        "rice",
+        "vegetables",
+        "soy sauce"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Chinese rice",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&q=80"
+    },
+    {
+      "id": 177,
+      "name": "Noodles",
+      "ingredients": [
+        "noodles",
+        "vegetables",
+        "sauce"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf5c",
+      "description": "Stir fried",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "420",
+      "imageUrl": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80"
+    },
+    {
+      "id": 178,
+      "name": "Wrap",
+      "ingredients": [
+        "tortilla",
+        "chicken",
+        "vegetables"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf2f",
+      "description": "Chicken wrap",
+      "type": "non-veg",
+      "protein": "28g",
+      "calories": "400",
+      "imageUrl": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=800&q=80"
+    },
+    {
+      "id": 179,
+      "name": "Quesadilla",
+      "ingredients": [
+        "tortilla",
+        "cheese",
+        "vegetables"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf2e",
+      "description": "Mexican dish",
+      "type": "veg",
+      "protein": "18g",
+      "calories": "450",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 180,
+      "name": "Falafel",
+      "ingredients": [
+        "chickpeas",
+        "herbs",
+        "spices"
+      ],
+      "tags": [
+        "lunch"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\uddc6",
+      "description": "Middle Eastern",
+      "type": "veg",
+      "protein": "15g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 181,
+      "name": "Spaghetti Bolognese",
+      "ingredients": [
+        "pasta",
+        "meat sauce",
+        "cheese"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf5d",
+      "description": "Italian classic",
+      "type": "non-veg",
+      "protein": "28g",
+      "calories": "520",
+      "imageUrl": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80"
+    },
+    {
+      "id": 182,
+      "name": "Grilled Chicken",
+      "ingredients": [
+        "chicken",
+        "herbs",
+        "vegetables"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf57",
+      "description": "Healthy grilled",
+      "type": "non-veg",
+      "protein": "35g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 183,
+      "name": "Baked Fish",
+      "ingredients": [
+        "fish",
+        "lemon",
+        "herbs"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83d\udc1f",
+      "description": "Oven baked",
+      "type": "non-veg",
+      "protein": "32g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80"
+    },
+    {
+      "id": 184,
+      "name": "Stir Fry",
+      "ingredients": [
+        "vegetables",
+        "tofu",
+        "sauce"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd58",
+      "description": "Asian stir fry",
+      "type": "veg",
+      "protein": "15g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800&q=80"
+    },
+    {
+      "id": 185,
+      "name": "Risotto",
+      "ingredients": [
+        "rice",
+        "cheese",
+        "mushroom"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Creamy rice",
+      "type": "veg",
+      "protein": "12g",
+      "calories": "420",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 186,
+      "name": "Tacos",
+      "ingredients": [
+        "tortilla",
+        "meat",
+        "vegetables"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf2e",
+      "description": "Mexican tacos",
+      "type": "non-veg",
+      "protein": "22g",
+      "calories": "380",
+      "imageUrl": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80"
+    },
+    {
+      "id": 187,
+      "name": "Enchiladas",
+      "ingredients": [
+        "tortilla",
+        "cheese",
+        "sauce"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "35 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf2f",
+      "description": "Baked tortillas",
+      "type": "veg",
+      "protein": "18g",
+      "calories": "450",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 188,
+      "name": "Paella",
+      "ingredients": [
+        "rice",
+        "seafood",
+        "vegetables"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "45 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Spanish rice",
+      "type": "non-veg",
+      "protein": "30g",
+      "calories": "520",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 189,
+      "name": "Moussaka",
+      "ingredients": [
+        "eggplant",
+        "meat",
+        "cheese"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "50 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf46",
+      "description": "Greek dish",
+      "type": "non-veg",
+      "protein": "25g",
+      "calories": "480",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 190,
+      "name": "Quiche",
+      "ingredients": [
+        "eggs",
+        "cheese",
+        "vegetables"
+      ],
+      "tags": [
+        "dinner"
+      ],
+      "prepTime": "40 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd67",
+      "description": "Savory pie",
+      "type": "veg",
+      "protein": "20g",
+      "calories": "420",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 191,
+      "name": "Cookies",
+      "ingredients": [
+        "flour",
+        "sugar",
+        "chocolate"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf6a",
+      "description": "Sweet cookies",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&q=80"
+    },
+    {
+      "id": 192,
+      "name": "Brownies",
+      "ingredients": [
+        "flour",
+        "chocolate",
+        "butter"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf6b",
+      "description": "Chocolate brownies",
+      "type": "veg",
+      "protein": "5g",
+      "calories": "250",
+      "imageUrl": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&q=80"
+    },
+    {
+      "id": 193,
+      "name": "Cupcake",
+      "ingredients": [
+        "flour",
+        "sugar",
+        "frosting"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\uddc1",
+      "description": "Sweet cupcake",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80"
+    },
+    {
+      "id": 194,
+      "name": "Donut",
+      "ingredients": [
+        "flour",
+        "sugar",
+        "glaze"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf69",
+      "description": "Glazed donut",
+      "type": "veg",
+      "protein": "5g",
+      "calories": "280",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 195,
+      "name": "Chips",
+      "ingredients": [
+        "potato",
+        "oil",
+        "salt"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd54",
+      "description": "Crispy chips",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "200",
+      "imageUrl": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=800&q=80"
+    },
+    {
+      "id": 196,
+      "name": "Popcorn",
+      "ingredients": [
+        "corn",
+        "butter",
+        "salt"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf7f",
+      "description": "Buttered popcorn",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "150",
+      "imageUrl": "https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=800&q=80"
+    },
+    {
+      "id": 197,
+      "name": "Nachos",
+      "ingredients": [
+        "tortilla chips",
+        "cheese",
+        "salsa"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\uddc0",
+      "description": "Cheesy nachos",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "320",
+      "imageUrl": "https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=800&q=80"
+    },
+    {
+      "id": 198,
+      "name": "Pretzels",
+      "ingredients": [
+        "flour",
+        "salt"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd68",
+      "description": "Salty pretzels",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "180",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 199,
+      "name": "Granola Bar",
+      "ingredients": [
+        "oats",
+        "honey",
+        "nuts"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83c\udf6b",
+      "description": "Energy bar",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "220",
+      "imageUrl": "https://images.unsplash.com/photo-1568471173238-64ed8e7e9d8e?w=800&q=80"
+    },
+    {
+      "id": 200,
+      "name": "Milkshake",
+      "ingredients": [
+        "milk",
+        "ice cream",
+        "syrup"
+      ],
+      "tags": [
+        "snack"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "cloudy"
+      ],
+      "image": "\ud83e\udd64",
+      "description": "Creamy shake",
+      "type": "veg",
+      "protein": "10g",
+      "calories": "350",
+      "imageUrl": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&q=80"
+    },
+    {
+      "id": 201,
+      "name": "Warm Vegetable Puree",
+      "ingredients": [
+        "carrot",
+        "potato",
+        "peas"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf72",
+      "description": "Warm mashed veggies for babies (6-12 months)",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "80",
+      "ageGroup": "6-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 202,
+      "name": "Warm Rice Cereal",
+      "ingredients": [
+        "rice",
+        "milk",
+        "ghee"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Soft warm rice for infants (6-12 months)",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "120",
+      "ageGroup": "6-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&q=80"
+    },
+    {
+      "id": 203,
+      "name": "Warm Lentil Soup",
+      "ingredients": [
+        "moong dal",
+        "carrot",
+        "ghee"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf75",
+      "description": "Protein-rich warm soup (8-12 months)",
+      "type": "veg",
+      "protein": "6g",
+      "calories": "100",
+      "ageGroup": "8-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80"
+    },
+    {
+      "id": 204,
+      "name": "Warm Oatmeal Porridge",
+      "ingredients": [
+        "oats",
+        "milk",
+        "banana"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83e\udd63",
+      "description": "Creamy warm oats (8-12 months)",
+      "type": "veg",
+      "protein": "5g",
+      "calories": "150",
+      "ageGroup": "8-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=800&q=80"
+    },
+    {
+      "id": 205,
+      "name": "Warm Sweet Potato Mash",
+      "ingredients": [
+        "sweet potato",
+        "milk",
+        "butter"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf60",
+      "description": "Nutritious warm mash (6-12 months)",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "110",
+      "ageGroup": "6-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 206,
+      "name": "Warm Chicken Puree",
+      "ingredients": [
+        "chicken",
+        "carrot",
+        "rice"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf57",
+      "description": "Protein-rich warm meal (10-12 months)",
+      "type": "non-veg",
+      "protein": "10g",
+      "calories": "140",
+      "ageGroup": "10-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80"
+    },
+    {
+      "id": 207,
+      "name": "Warm Apple Sauce",
+      "ingredients": [
+        "apple",
+        "cinnamon"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf4e",
+      "description": "Warm fruit puree (6-12 months)",
+      "type": "veg",
+      "protein": "1g",
+      "calories": "70",
+      "ageGroup": "6-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 208,
+      "name": "Warm Khichdi",
+      "ingredients": [
+        "rice",
+        "moong dal",
+        "ghee"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "25 min",
+      "weatherCategories": [
+        "cold"
+      ],
+      "image": "\ud83c\udf72",
+      "description": "Traditional warm baby food (8-12 months)",
+      "type": "veg",
+      "protein": "7g",
+      "calories": "130",
+      "ageGroup": "8-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80"
+    },
+    {
+      "id": 209,
+      "name": "Cool Mashed Banana",
+      "ingredients": [
+        "banana",
+        "milk"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf4c",
+      "description": "Cool easy fruit mash (6-12 months)",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "90",
+      "ageGroup": "6-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 210,
+      "name": "Cool Yogurt with Fruit",
+      "ingredients": [
+        "yogurt",
+        "mashed fruit"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf68",
+      "description": "Cool probiotic snack (8-12 months)",
+      "type": "veg",
+      "protein": "5g",
+      "calories": "100",
+      "ageGroup": "8-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1564093497595-593b96d80180?w=800&q=80"
+    },
+    {
+      "id": 211,
+      "name": "Cool Cucumber Puree",
+      "ingredients": [
+        "cucumber",
+        "yogurt"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd52",
+      "description": "Hydrating cool puree (8-12 months)",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "50",
+      "ageGroup": "8-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1603046891726-36bfd957e0bf?w=800&q=80"
+    },
+    {
+      "id": 212,
+      "name": "Cool Watermelon Puree",
+      "ingredients": [
+        "watermelon"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf49",
+      "description": "Refreshing fruit puree (8-12 months)",
+      "type": "veg",
+      "protein": "1g",
+      "calories": "60",
+      "ageGroup": "8-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1621510456681-2330135e5871?w=800&q=80"
+    },
+    {
+      "id": 213,
+      "name": "Cool Avocado Mash",
+      "ingredients": [
+        "avocado",
+        "milk"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "5 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd51",
+      "description": "Creamy cool mash (6-12 months)",
+      "type": "veg",
+      "protein": "2g",
+      "calories": "120",
+      "ageGroup": "6-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=800&q=80"
+    },
+    {
+      "id": 214,
+      "name": "Cool Mango Puree",
+      "ingredients": [
+        "mango",
+        "yogurt"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "8 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83e\udd6d",
+      "description": "Sweet cool fruit (8-12 months)",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "95",
+      "ageGroup": "8-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 215,
+      "name": "Cool Rice Porridge",
+      "ingredients": [
+        "rice",
+        "milk"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Light cool porridge (6-12 months)",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "110",
+      "ageGroup": "6-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=800&q=80"
+    },
+    {
+      "id": 216,
+      "name": "Cool Curd Rice",
+      "ingredients": [
+        "rice",
+        "curd",
+        "carrot"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "hot",
+        "humid"
+      ],
+      "image": "\ud83c\udf5a",
+      "description": "Soothing cool meal (10-12 months)",
+      "type": "veg",
+      "protein": "5g",
+      "calories": "130",
+      "ageGroup": "10-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&q=80"
+    },
+    {
+      "id": 217,
+      "name": "Mild Vegetable Soup",
+      "ingredients": [
+        "carrot",
+        "potato",
+        "peas"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "20 min",
+      "weatherCategories": [
+        "rainy",
+        "cloudy"
+      ],
+      "image": "\ud83c\udf72",
+      "description": "Comforting soup (8-12 months)",
+      "type": "veg",
+      "protein": "3g",
+      "calories": "85",
+      "ageGroup": "8-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80"
+    },
+    {
+      "id": 218,
+      "name": "Soft Roti with Ghee",
+      "ingredients": [
+        "wheat flour",
+        "ghee",
+        "milk"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "15 min",
+      "weatherCategories": [
+        "rainy",
+        "cloudy",
+        "cold"
+      ],
+      "image": "\ud83e\uded3",
+      "description": "Soft bread for babies (10-12 months)",
+      "type": "veg",
+      "protein": "4g",
+      "calories": "140",
+      "ageGroup": "10-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80"
+    },
+    {
+      "id": 219,
+      "name": "Warm Milk with Dates",
+      "ingredients": [
+        "milk",
+        "dates"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "10 min",
+      "weatherCategories": [
+        "cold",
+        "rainy"
+      ],
+      "image": "\ud83e\udd5b",
+      "description": "Nutritious warm drink (10-12 months)",
+      "type": "veg",
+      "protein": "8g",
+      "calories": "150",
+      "ageGroup": "10-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
+    },
+    {
+      "id": 220,
+      "name": "Soft Idli with Ghee",
+      "ingredients": [
+        "rice",
+        "urad dal",
+        "ghee"
+      ],
+      "tags": [
+        "baby"
+      ],
+      "prepTime": "30 min",
+      "weatherCategories": [
+        "rainy",
+        "cloudy",
+        "cold"
+      ],
+      "image": "\ud83c\udf58",
+      "description": "Soft steamed cake (10-12 months)",
+      "type": "veg",
+      "protein": "5g",
+      "calories": "120",
+      "ageGroup": "10-12 months",
+      "imageUrl": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80"
+    }
+  ],
+  "commonIngredients": [
+    "rice",
+    "wheat flour",
+    "bread",
+    "oats",
+    "pasta",
+    "quinoa",
+    "milk",
+    "curd",
+    "yogurt",
+    "paneer",
+    "cheese",
+    "butter",
+    "ghee",
+    "egg",
+    "chicken",
+    "fish",
+    "tuna",
+    "prawns",
+    "beef",
+    "mutton",
+    "toor dal",
+    "moong dal",
+    "urad dal",
+    "chickpeas",
+    "kidney beans",
+    "potato",
+    "onion",
+    "tomato",
+    "carrot",
+    "peas",
+    "beans",
+    "cucumber",
+    "spinach",
+    "broccoli",
+    "banana",
+    "apple",
+    "grapes",
+    "mango",
+    "orange",
+    "berries",
+    "avocado",
+    "watermelon",
+    "salt",
+    "pepper",
+    "turmeric",
+    "cumin",
+    "mustard seeds",
+    "curry leaves",
+    "coriander",
+    "lemon",
+    "honey",
+    "sugar",
+    "oil",
+    "olive oil"
+  ]
+}

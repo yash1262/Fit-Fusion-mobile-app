@@ -1,0 +1,2021 @@
+import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../firebaseConfig";
+import FitFusionLogo from "./FitFusionLogo";
+import { generateAIResponse } from "../services/aiCoachService";
+
+type Role = "user" | "assistant" | "system";
+
+interface Message {
+  role: Role;
+  content: string;
+  timestamp: Date;
+}
+
+interface QuickPrompt {
+  icon: string;
+  title: string;
+  prompt: string;
+}
+
+const AiCoach: React.FC = () => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [thinking, setThinking] = useState(false);
+  const [error, setError] = useState("");
+  const [userName, setUserName] = useState<string>("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Comprehensive user context from Firebase and localStorage
+  const [userCtx, setUserCtx] = useState<{
+    displayName?: string;
+    email?: string;
+    goal?: string;
+    height?: string;
+    currentWeight?: string;
+    targetWeight?: string;
+    gender?: string;
+    age?: number;
+    // Activity data
+    todaySteps?: number;
+    todayCalories?: number;
+    todayActiveMinutes?: number;
+    todayHydration?: number;
+    todayWorkouts?: number;
+    streak?: number;
+    // Historical data
+    weeklyAvgSteps?: number;
+    weeklyWorkouts?: number;
+    totalWorkouts?: number;
+    memberSince?: string;
+  } | null>(null);
+
+  const quickPrompts: QuickPrompt[] = [
+    { icon: "💪", title: "Workout Plan", prompt: "Create a beginner-friendly workout plan for me" },
+    { icon: "🥗", title: "Meal Ideas", prompt: "Suggest healthy meal ideas for weight loss" },
+    { icon: "🎯", title: "Set Goals", prompt: "Help me set realistic fitness goals" },
+    { icon: "📊", title: "Track Progress", prompt: "How should I track my fitness progress?" },
+  ];
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, async (u) => {
+      if (!u) { 
+        setUserCtx(null); 
+        setUserName('');
+        return; 
+      }
+      try {
+        const snap = await getDoc(doc(db, "users", u.uid));
+        const data = snap.exists() ? (snap.data() as any) : {};
+        
+        // Get activity data from localStorage (simulating real-time tracking)
+        const activityData = JSON.parse(localStorage.getItem('fitfusion_activity') || '{}');
+        const userActivityKey = `user_${u.uid}`;
+        const userActivity = activityData[userActivityKey] || {};
+        
+        // Calculate age from DOB
+        let age = undefined;
+        if (data?.dob) {
+          const birthDate = new Date(data.dob);
+          const today = new Date();
+          age = today.getFullYear() - birthDate.getFullYear();
+          const monthDiff = today.getMonth() - birthDate.getMonth();
+          if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+          }
+        }
+
+        // Calculate member duration
+        let memberSince = "recently";
+        if (data?.createdAt) {
+          const created = data.createdAt.toDate ? data.createdAt.toDate() : new Date(data.createdAt);
+          const daysSince = Math.floor((new Date().getTime() - created.getTime()) / (1000 * 60 * 60 * 24));
+          if (daysSince < 7) memberSince = `${daysSince} days ago`;
+          else if (daysSince < 30) memberSince = `${Math.floor(daysSince / 7)} weeks ago`;
+          else if (daysSince < 365) memberSince = `${Math.floor(daysSince / 30)} months ago`;
+          else memberSince = `${Math.floor(daysSince / 365)} years ago`;
+        }
+        
+        const ctx = {
+          displayName: data?.displayName || u.displayName || (u.email?.split("@")[0] ?? ""),
+          email: u.email || "",
+          goal: data?.goals?.primary || "",
+          height: data?.metrics?.height || "",
+          currentWeight: data?.metrics?.currentWeight || "",
+          targetWeight: data?.metrics?.targetWeight || "",
+          gender: data?.gender || "",
+          age,
+          // Today's activity
+          todaySteps: userActivity.steps || 0,
+          todayCalories: userActivity.calories || 0,
+          todayActiveMinutes: userActivity.activeMinutes || 0,
+          todayHydration: userActivity.hydration || 0,
+          todayWorkouts: userActivity.workoutsCompleted || 0,
+          streak: userActivity.streak || 1,
+          // Historical data
+          weeklyAvgSteps: userActivity.weeklyAvgSteps || 0,
+          weeklyWorkouts: userActivity.weeklyWorkouts || 0,
+          totalWorkouts: userActivity.totalWorkouts || 0,
+          memberSince,
+        };
+        setUserCtx(ctx);
+        setUserName(ctx.displayName || '');
+      } catch (err) {
+        console.error("Error loading user context:", err);
+        const fallback = u.displayName || (u.email?.split("@")[0] ?? "");
+        setUserCtx({ displayName: fallback, email: u.email || "" });
+        setUserName(fallback);
+      }
+    });
+    return () => unsub();
+  }, []);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const sendMessage = async (messageText?: string) => {
+    const text = (messageText || input).trim();
+    if (!text || loading) return;
+    setError("");
+
+    // Build a comprehensive, context-aware system prompt
+    const sysBase = `You are Fit Fusion AI Coach - a world-class fitness and nutrition expert with the conversational ability of ChatGPT, combined with deep expertise in exercise science, nutrition, behavioral psychology, and personalized coaching.
+
+CORE IDENTITY:
+You are warm, knowledgeable, and genuinely invested in helping users achieve their fitness goals. You understand that fitness is a journey, not a destination, and you meet users where they are with empathy and expertise.
+
+RESPONSE PHILOSOPHY:
+1. UNDERSTAND FIRST: Carefully analyze what the user is really asking
+2. PERSONALIZE: Use their actual data, name, and context naturally
+3. EDUCATE: Explain the "why" behind your recommendations
+4. ACTIONABLE: Provide clear, specific next steps
+5. MOTIVATE: Encourage without being preachy
+6. FOLLOW-UP: Suggest related topics or ask clarifying questions
+
+COMMUNICATION STYLE (Like ChatGPT):
+- Natural, conversational tone - talk like a knowledgeable friend
+- Use their name organically (not in every sentence)
+- Break down complex topics into digestible pieces
+- Use analogies and examples to clarify concepts
+- Acknowledge uncertainty when appropriate
+- Ask clarifying questions to better help
+- Adapt your language to match their question style
+- Use emojis sparingly and purposefully
+- Format for readability: headers, bullets, spacing
+
+EXPERTISE DOMAINS:
+🏋️ TRAINING: Strength, hypertrophy, endurance, HIIT, flexibility, mobility, sport-specific
+🥗 NUTRITION: Macros, meal timing, supplements, diets (keto, IF, etc), meal prep
+📊 PROGRESS: Tracking methods, analytics, plateau breaking, body composition
+🎯 GOALS: Weight loss, muscle gain, recomp, performance, health markers
+🧠 PSYCHOLOGY: Motivation, habit formation, consistency, overcoming barriers
+💪 RECOVERY: Sleep, rest days, active recovery, injury prevention, stress management
+📐 SCIENCE: Exercise physiology, nutrition science, evidence-based practices
+
+RESPONSE STRUCTURE:
+1. Acknowledge their question/situation
+2. Reference relevant personal data if applicable
+3. Provide comprehensive answer with reasoning
+4. Give specific, actionable recommendations
+5. Offer encouragement or next steps
+6. Invite follow-up questions
+
+CRITICAL RULES:
+✓ Answer the ACTUAL question asked (don't go off-topic)
+✓ Use their real data (steps, workouts, goals, etc.) when relevant
+✓ Provide specific numbers (reps, sets, calories, timing)
+✓ Explain WHY, not just WHAT
+✓ Be realistic about timelines and expectations
+✓ Prioritize safety and sustainable practices
+✓ Celebrate their wins and progress
+✓ Adapt advice to their fitness level and goal
+✓ If you don't have enough info, ask for it
+✓ Keep responses focused and well-organized
+
+NEVER:
+✗ Give generic, cookie-cutter responses
+✗ Ignore the user's context and data
+✗ Recommend unsafe or extreme practices
+✗ Make unrealistic promises
+✗ Be condescending or judgmental
+✗ Provide medical diagnoses (suggest doctor visits)
+✗ Ramble or go off-topic
+✗ Use overly technical jargon without explanation`;
+
+    // Build comprehensive user context
+    let ctxLine = "";
+    if (userCtx) {
+      const profileParts = [
+        `👤 USER PROFILE:`,
+        `Name: ${userCtx.displayName || "User"}`,
+        userCtx.age ? `Age: ${userCtx.age} years` : null,
+        userCtx.gender ? `Gender: ${userCtx.gender}` : null,
+        userCtx.memberSince ? `Member since: ${userCtx.memberSince}` : null,
+      ].filter(Boolean);
+
+      const goalsParts = [
+        `\n🎯 FITNESS GOALS:`,
+        userCtx.goal ? `Primary Goal: ${userCtx.goal}` : "Primary Goal: Not specified",
+        userCtx.currentWeight ? `Current Weight: ${userCtx.currentWeight} kg` : null,
+        userCtx.targetWeight ? `Target Weight: ${userCtx.targetWeight} kg` : null,
+        userCtx.height ? `Height: ${userCtx.height} cm` : null,
+      ].filter(Boolean);
+
+      const activityParts = [
+        `\n📊 TODAY'S ACTIVITY:`,
+        `Steps: ${userCtx.todaySteps?.toLocaleString() || 0} (Goal: 10,000)`,
+        `Active Minutes: ${userCtx.todayActiveMinutes || 0} min (Goal: 60)`,
+        `Calories Burned: ${userCtx.todayCalories?.toLocaleString() || 0} cal`,
+        `Water Intake: ${userCtx.todayHydration || 0}/8 glasses`,
+        `Workouts Completed: ${userCtx.todayWorkouts || 0}`,
+        `Current Streak: ${userCtx.streak || 1} days 🔥`,
+      ];
+
+      const progressParts = [
+        `\n📈 PROGRESS SUMMARY:`,
+        userCtx.weeklyAvgSteps ? `Weekly Avg Steps: ${userCtx.weeklyAvgSteps.toLocaleString()}` : null,
+        userCtx.weeklyWorkouts ? `Workouts This Week: ${userCtx.weeklyWorkouts}` : null,
+        userCtx.totalWorkouts ? `Total Workouts: ${userCtx.totalWorkouts}` : null,
+      ].filter(Boolean);
+
+      ctxLine = [
+        ...profileParts,
+        ...goalsParts,
+        ...activityParts,
+        ...(progressParts.length > 1 ? progressParts : []),
+      ].join("\n");
+    }
+
+    const systemMessage: Message = { 
+      role: "system", 
+      content: [sysBase, ctxLine].filter(Boolean).join("\n\n"),
+      timestamp: new Date()
+    };
+
+    const userMessage: Message = { 
+      role: "user", 
+      content: text,
+      timestamp: new Date()
+    };
+
+    const hadSystem = messages.some(m => m.role === "system");
+    const nextMessages: Message[] = hadSystem
+      ? [...messages, userMessage]
+      : [systemMessage, ...messages, userMessage];
+    
+    setMessages(nextMessages);
+    setInput("");
+    setThinking(true);
+
+    // Simulate thinking time (2-3 seconds) with heart logo beating
+    const thinkingTime = 2000 + Math.random() * 1000; // 2-3 seconds
+    await new Promise(resolve => setTimeout(resolve, thinkingTime));
+    
+    setThinking(false);
+    setLoading(true);
+
+    try {
+      const tryOnce = async (url: string) => {
+        const controller = new AbortController();
+        const t = setTimeout(() => controller.abort(), 30000); // 30s timeout
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            messages: nextMessages.map(m => ({ role: m.role, content: m.content }))
+          }),
+          signal: controller.signal
+        }).finally(() => clearTimeout(t));
+        
+        const ct = res.headers.get("content-type") || "";
+        if (!ct.includes("application/json")) {
+          const txt = await res.text();
+          throw new Error(txt.slice(0, 120) || "Non-JSON response");
+        }
+        const data = await res.json();
+        if (!res.ok || !data?.message) {
+          throw new Error(data?.error || "Unexpected response");
+        }
+        return data.message as string;
+      };
+
+      let reply: string = "";
+      try {
+        reply = await tryOnce("/api/chatbot/message");
+      } catch (err1) {
+        try {
+          reply = await tryOnce("http://localhost:5000/api/chatbot/message");
+        } catch (err2) {
+          // Fallback to intelligent AI response
+          reply = generateAIResponse({
+            userMessage: text,
+            userCtx: userCtx,
+            conversationHistory: messages.filter(m => m.role !== 'system').map(m => ({ role: m.role, content: m.content }))
+          });
+        }
+      }
+
+      setMessages((prev) => [...prev, { 
+        role: "assistant", 
+        content: reply,
+        timestamp: new Date()
+      }]);
+    } catch (e: any) {
+      const errorMsg = e?.message || "Error contacting AI Coach.";
+      setError(errorMsg);
+      setMessages((prev) => [...prev, { 
+        role: "assistant", 
+        content: "I apologize, but I'm having trouble connecting right now. Please try again in a moment.",
+        timestamp: new Date()
+      }]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Old generateMockResponse function removed - now using aiCoachService.ts
+    const lower = userMessage.toLowerCase();
+    const name = userCtx?.displayName || "there";
+    const goal = userCtx?.goal || "your fitness goals";
+    const steps = userCtx?.todaySteps || 0;
+    const workouts = userCtx?.todayWorkouts || 0;
+    const streak = userCtx?.streak || 1;
+    const hydration = userCtx?.todayHydration || 0;
+    const activeMinutes = userCtx?.todayActiveMinutes || 0;
+    const calories = userCtx?.todayCalories || 0;
+    
+    // Nutrition/diet request - HIGH PRIORITY
+    if (lower.includes("meal") || lower.includes("diet") || lower.includes("nutrition") || 
+        lower.includes("food") || lower.includes("eat") || lower.includes("recipe") ||
+        lower.includes("breakfast") || lower.includes("lunch") || lower.includes("dinner") ||
+        lower.includes("snack") || lower.match(/what.*eat/) || lower.match(/what.*try/)) {
+      
+      let response = `Great question, ${name}! Let me create a personalized nutrition plan for you 🥗\n\n`;
+      
+      // Calculate basic calorie needs
+      const weight = parseFloat(userCtx?.currentWeight || "70");
+      const targetWeight = parseFloat(userCtx?.targetWeight || "65");
+      const isWeightLoss = weight > targetWeight;
+      
+      let dailyCalories = 2000;
+      if (isWeightLoss) {
+        dailyCalories = Math.round(weight * 24 - 500);
+      } else {
+        dailyCalories = Math.round(weight * 28 + 300);
+      }
+      
+      response += `**📊 Your Daily Nutrition Targets:**\n`;
+      response += `• Calories: ${dailyCalories} cal ${isWeightLoss ? '(deficit for fat loss)' : '(surplus for muscle gain)'}\n`;
+      response += `• Protein: ${Math.round(weight * 2)}g (builds muscle, keeps you full)\n`;
+      response += `• Carbs: ${Math.round(dailyCalories * 0.40 / 4)}g (energy for workouts)\n`;
+      response += `• Fats: ${Math.round(dailyCalories * 0.30 / 9)}g (hormone health)\n`;
+      response += `• Water: 8+ glasses 💧\n\n`;
+      
+      response += `**🍳 Today's Meal Plan:**\n\n`;
+      
+      response += `**Breakfast (${Math.round(dailyCalories * 0.25)} cal) - 7:00 AM**\n`;
+      response += `• 3 egg whites + 1 whole egg scrambled\n`;
+      response += `• 1 cup oatmeal with berries\n`;
+      response += `• 1 tbsp almond butter\n`;
+      response += `• Green tea or black coffee\n`;
+      response += `💡 *High protein start to boost metabolism*\n\n`;
+      
+      response += `**Mid-Morning Snack (${Math.round(dailyCalories * 0.10)} cal) - 10:30 AM**\n`;
+      response += `• Greek yogurt (150g) with honey\n`;
+      response += `• Handful of almonds (10-12)\n`;
+      response += `• Apple or banana\n`;
+      response += `💡 *Keeps energy stable until lunch*\n\n`;
+      
+      response += `**Lunch (${Math.round(dailyCalories * 0.35)} cal) - 1:00 PM**\n`;
+      response += `• Grilled chicken breast (150g)\n`;
+      response += `• Quinoa or brown rice (1 cup cooked)\n`;
+      response += `• Mixed vegetables (broccoli, carrots, peppers)\n`;
+      response += `• Side salad with olive oil dressing\n`;
+      response += `💡 *Balanced macros for sustained energy*\n\n`;
+      
+      response += `**Afternoon Snack (${Math.round(dailyCalories * 0.10)} cal) - 4:00 PM**\n`;
+      response += `• Protein shake (whey or plant-based)\n`;
+      response += `• Rice cakes with peanut butter\n`;
+      response += `• Orange or berries\n`;
+      response += `💡 *Pre-workout fuel if exercising*\n\n`;
+      
+      response += `**Dinner (${Math.round(dailyCalories * 0.30)} cal) - 7:00 PM**\n`;
+      response += `• Baked salmon or lean beef (150g)\n`;
+      response += `• Sweet potato (medium, baked)\n`;
+      response += `• Steamed broccoli and asparagus\n`;
+      response += `• Small side salad\n`;
+      response += `💡 *Lighter carbs in evening for better sleep*\n\n`;
+      
+      response += `**🌟 Pro Tips for Success:**\n`;
+      response += `✓ Meal prep on Sundays for the week\n`;
+      response += `✓ Drink water 30 min before each meal\n`;
+      response += `✓ Eat protein with every meal\n`;
+      response += `✓ Avoid processed foods and sugar\n`;
+      response += `✓ Track your meals in the app\n`;
+      response += `✓ Eat slowly and mindfully\n\n`;
+      
+      if (hydration < 8) {
+        response += `⚠️ **Important:** You've only had ${hydration}/8 glasses of water today. Drink more water to support ${goal}!\n\n`;
+      }
+      
+      response += `**🎯 This Week's Challenge:**\n`;
+      response += `Try this meal plan for 3 days and track how you feel. Notice your energy levels, hunger, and workout performance!\n\n`;
+      response += `Need specific recipes or have dietary restrictions? Just ask! 🍽️`;
+      
+      return response;
+    }
+    
+    // Workout request - HIGH PRIORITY
+    if (lower.includes("workout") || lower.includes("exercise") || lower.includes("training") || 
+        lower.includes("gym") || (lower.match(/what.*do/) && (lower.includes("fitness") || lower.includes("body")))) {
+      
+      let response = `Perfect timing, ${name}! Let me create a workout plan for you based on your goal: ${goal} 💪\n\n`;
+      
+      if (workouts > 0) {
+        response += `I see you've already completed ${workouts} workout${workouts > 1 ? 's' : ''} today! That's awesome! Here's something to complement that:\n\n`;
+      }
+      
+      const isWeightLoss = goal.toLowerCase().includes("weight loss") || goal.toLowerCase().includes("lose weight") || goal.toLowerCase().includes("fat");
+      const isMuscle = goal.toLowerCase().includes("muscle") || goal.toLowerCase().includes("strength") || goal.toLowerCase().includes("gain");
+      
+      if (isWeightLoss) {
+        response += `**🔥 Fat-Burning HIIT Circuit** (25 minutes)\n\n`;
+        response += `**Warm-up (5 min):**\n`;
+        response += `• Jumping jacks: 1 min\n`;
+        response += `• Arm circles: 1 min\n`;
+        response += `• High knees: 1 min\n`;
+        response += `• Butt kicks: 1 min\n`;
+        response += `• Dynamic stretches: 1 min\n\n`;
+        response += `**Main Circuit (3 rounds, 45 sec work / 15 sec rest):**\n`;
+        response += `1. Burpees - Full body cardio blast\n`;
+        response += `2. Mountain climbers - Core + cardio\n`;
+        response += `3. Jump squats - Lower body power\n`;
+        response += `4. Push-ups - Upper body strength\n`;
+        response += `5. High knees - Cardio intensity\n`;
+        response += `6. Plank - Core stability\n\n`;
+        response += `**Cool-down (5 min):** Light stretching\n\n`;
+        response += `💡 **This will burn approximately 250-350 calories!**\n`;
+      } else if (isMuscle) {
+        response += `**💪 Strength Building Workout** (40 minutes)\n\n`;
+        response += `**Upper Body Focus:**\n`;
+        response += `• Push-ups: 4 sets × 12 reps (90 sec rest)\n`;
+        response += `• Dumbbell rows: 4 sets × 10 reps each arm\n`;
+        response += `• Shoulder press: 3 sets × 12 reps\n`;
+        response += `• Bicep curls: 3 sets × 15 reps\n`;
+        response += `• Tricep dips: 3 sets × 12 reps\n\n`;
+        response += `**Core Finisher:**\n`;
+        response += `• Plank: 3 sets × 45 seconds\n`;
+        response += `• Russian twists: 3 sets × 20 reps\n`;
+        response += `• Leg raises: 3 sets × 15 reps\n\n`;
+        response += `💡 **Focus on form over speed. Control the movement!**\n`;
+      } else {
+        response += `**🎯 Balanced Full-Body Workout** (30 minutes)\n\n`;
+        response += `**Circuit (4 rounds):**\n`;
+        response += `• Squats: 15 reps\n`;
+        response += `• Push-ups: 12 reps\n`;
+        response += `• Lunges: 10 reps each leg\n`;
+        response += `• Plank: 30 seconds\n`;
+        response += `• Jumping jacks: 30 seconds\n`;
+        response += `Rest 60 seconds between rounds\n\n`;
+        response += `💡 **This hits all major muscle groups efficiently!**\n`;
+      }
+      
+      response += `\n✅ **After completing this:**\n`;
+      response += `• You'll add ~30-40 active minutes\n`;
+      response += `• Burn 200-400 calories\n`;
+      response += `• Maintain your ${streak}-day streak!\n\n`;
+      response += `Ready to crush it? Let me know how it goes! 💪`;
+      
+      return response;
+    }
+    
+    // Steps inquiry
+    if ((lower.includes("step") && !lower.includes("diet")) || lower.includes("walk") || lower.includes("covered")) {
+      let response = `Great question, ${name}! Let me check your step count 👟\n\n`;
+      
+      response += `**📊 Today's Steps: ${steps.toLocaleString()}**\n\n`;
+      
+      if (steps >= 10000) {
+        response += `🎉 **Fantastic!** You've crushed your daily goal of 10,000 steps!\n\n`;
+        response += `That's approximately:\n`;
+        response += `• ${(steps * 0.0008).toFixed(1)} km distance covered\n`;
+        response += `• ${Math.round(steps * 0.04)} calories burned from walking\n`;
+        response += `• ${Math.round(steps / 100)} minutes of activity\n\n`;
+        response += `You're in the top tier of active people! Keep this momentum going! 💪`;
+      } else if (steps >= 7500) {
+        response += `👍 **Great progress!** You're at ${Math.round((steps / 10000) * 100)}% of your 10,000 step goal.\n\n`;
+        response += `Just ${(10000 - steps).toLocaleString()} more steps to go!\n\n`;
+        response += `**Quick ways to hit your goal:**\n`;
+        response += `• Take a ${Math.ceil((10000 - steps) / 100)}-minute walk\n`;
+        response += `• Walk around while on phone calls\n`;
+        response += `• Take the stairs instead of elevator\n`;
+        response += `• Park farther from your destination\n\n`;
+        response += `You've got this! 🚶‍♂️`;
+      } else if (steps >= 5000) {
+        response += `💪 **Good start!** You're halfway to your goal.\n\n`;
+        response += `**Current stats:**\n`;
+        response += `• Distance: ${(steps * 0.0008).toFixed(1)} km\n`;
+        response += `• Calories: ~${Math.round(steps * 0.04)} cal\n`;
+        response += `• Remaining: ${(10000 - steps).toLocaleString()} steps\n\n`;
+        response += `**Challenge:** Can you add 2,500 more steps before lunch? That's just a 25-minute walk! 🎯`;
+      } else if (steps > 0) {
+        response += `You've taken ${steps.toLocaleString()} steps so far today.\n\n`;
+        response += `**Let's get moving!** Here's your action plan:\n\n`;
+        response += `🎯 **Goal:** 10,000 steps (${(10000 - steps).toLocaleString()} to go)\n\n`;
+        response += `**Easy ways to add steps:**\n`;
+        response += `1. 30-minute walk = ~3,000 steps\n`;
+        response += `2. 15-minute walk = ~1,500 steps\n`;
+        response += `3. Walk during breaks = ~500 steps each\n`;
+        response += `4. Evening stroll = ~2,000 steps\n\n`;
+        response += `Every step counts! Start with a quick 10-minute walk right now? 🚶‍♀️`;
+      } else {
+        response += `I don't see any steps logged yet today, ${name}.\n\n`;
+        response += `**Let's change that!** 🚀\n\n`;
+        response += `**Your 10,000 Step Plan:**\n`;
+        response += `• Morning walk: 3,000 steps (30 min)\n`;
+        response += `• Lunch break walk: 2,000 steps (20 min)\n`;
+        response += `• Afternoon movement: 2,000 steps\n`;
+        response += `• Evening walk: 3,000 steps (30 min)\n\n`;
+        response += `💡 **Pro tip:** Start tracking your steps on the Dashboard! Use the +100 and +1K buttons to log your activity.\n\n`;
+        response += `Ready to start? Even a 5-minute walk is a great beginning! 👟`;
+      }
+      
+      return response;
+    }
+    
+    // Greeting responses
+    if (lower.match(/^(hi|hello|hey|good morning|good afternoon|good evening)/)) {
+      let greeting = `Hey ${name}! 👋 Great to see you here!\n\n`;
+      
+      if (streak > 7) {
+        greeting += `🔥 Wow! You're on a ${streak}-day streak! That's incredible dedication!\n\n`;
+      } else if (streak > 1) {
+        greeting += `🔥 Nice! You're on a ${streak}-day streak. Keep it going!\n\n`;
+      }
+      
+      if (steps > 0 || workouts > 0) {
+        greeting += `📊 **Today's Progress:**\n`;
+        if (steps > 0) greeting += `• ${steps.toLocaleString()} steps ${steps >= 10000 ? '✅ (Goal reached!)' : `(${(10000 - steps).toLocaleString()} to go)`}\n`;
+        if (workouts > 0) greeting += `• ${workouts} workout${workouts > 1 ? 's' : ''} completed 💪\n`;
+        if (activeMinutes > 0) greeting += `• ${activeMinutes} active minutes\n`;
+        if (hydration > 0) greeting += `• ${hydration}/8 glasses of water 💧\n`;
+        greeting += `\n`;
+      }
+      
+      greeting += `I'm here to help you with ${goal}. What would you like to work on today?\n\n`;
+      greeting += `💡 **I can help with:**\n`;
+      greeting += `• Personalized workout plans\n`;
+      greeting += `• Nutrition and meal planning\n`;
+      greeting += `• Progress analysis and tips\n`;
+      greeting += `• Motivation and accountability`;
+      
+      return greeting;
+    }
+    
+    // Water/hydration inquiry
+    if (lower.includes("water") || lower.includes("hydrat") || lower.includes("drink")) {
+      let response = `Let me check your hydration, ${name}! 💧\n\n`;
+      
+      response += `**Today's Water Intake: ${hydration}/8 glasses**\n\n`;
+      
+      if (hydration >= 8) {
+        response += `🌟 **Perfect!** You've hit your daily hydration goal!\n\n`;
+        response += `Proper hydration helps with:\n`;
+        response += `✓ Better workout performance\n`;
+        response += `✓ Faster recovery\n`;
+        response += `✓ Improved metabolism\n`;
+        response += `✓ Clearer skin\n`;
+        response += `✓ Better energy levels\n\n`;
+        response += `Keep up this excellent habit! 💪`;
+      } else if (hydration >= 5) {
+        response += `👍 **Good progress!** You're ${hydration} glasses in.\n\n`;
+        response += `Just ${8 - hydration} more glass${8 - hydration > 1 ? 'es' : ''} to reach your goal!\n\n`;
+        response += `💡 **Tips to finish strong:**\n`;
+        response += `• Set hourly reminders\n`;
+        response += `• Drink a glass before each meal\n`;
+        response += `• Keep water bottle visible\n`;
+        response += `• Add lemon for flavor\n\n`;
+        response += `You can do this! 🎯`;
+      } else if (hydration > 0) {
+        response += `You've had ${hydration} glass${hydration > 1 ? 'es' : ''} so far.\n\n`;
+        response += `**Hydration Plan:**\n`;
+        response += `• Now: 1 glass 💧\n`;
+        response += `• Before lunch: 2 glasses\n`;
+        response += `• Afternoon: 2 glasses\n`;
+        response += `• Evening: ${8 - hydration - 5} glass${8 - hydration - 5 !== 1 ? 'es' : ''}\n\n`;
+        response += `⚠️ **Remember:** Proper hydration is crucial for ${goal}!\n\n`;
+        response += `Drink a glass right now! 🥤`;
+      } else {
+        response += `I don't see any water logged yet today.\n\n`;
+        response += `💧 **Why hydration matters:**\n`;
+        response += `• Boosts metabolism by 30%\n`;
+        response += `• Reduces hunger and cravings\n`;
+        response += `• Improves workout performance\n`;
+        response += `• Aids muscle recovery\n`;
+        response += `• Increases energy levels\n\n`;
+        response += `**Your 8-Glass Plan:**\n`;
+        response += `• Wake up: 1 glass\n`;
+        response += `• Before breakfast: 1 glass\n`;
+        response += `• Mid-morning: 1 glass\n`;
+        response += `• Before lunch: 1 glass\n`;
+        response += `• Afternoon: 2 glasses\n`;
+        response += `• Before dinner: 1 glass\n`;
+        response += `• Evening: 1 glass\n\n`;
+        response += `Start now! Go to the Dashboard and click the + button to log your water intake! 💧`;
+      }
+      
+      return response;
+    }
+    
+    // Calories inquiry
+    if (lower.includes("calorie") || lower.includes("burn")) {
+      let response = `Let me check your calorie burn, ${name}! 🔥\n\n`;
+      
+      response += `**Today's Calories Burned: ${calories.toLocaleString()} cal**\n\n`;
+      
+      if (calories >= 2500) {
+        response += `🔥 **Incredible!** You're burning serious calories today!\n\n`;
+        response += `**Breakdown:**\n`;
+        response += `• From steps: ~${Math.round(steps * 0.04)} cal\n`;
+        response += `• From active minutes: ~${Math.round(activeMinutes * 8)} cal\n`;
+        response += `• Total: ${calories.toLocaleString()} cal\n\n`;
+        response += `At this rate, you're creating a great calorie deficit for ${goal}! 💪`;
+      } else if (calories >= 1500) {
+        response += `👍 **Good work!** You're on track.\n\n`;
+        response += `**Ways to burn more:**\n`;
+        response += `• 30-min HIIT: +300 cal\n`;
+        response += `• 1 hour walk: +200 cal\n`;
+        response += `• Strength training: +250 cal\n\n`;
+        response += `Want a quick workout to boost your burn? 🏋️`;
+      } else if (calories > 0) {
+        response += `You've burned ${calories} calories so far.\n\n`;
+        response += `**Quick calorie-burning activities:**\n`;
+        response += `• 20-min jog: 200 cal\n`;
+        response += `• 30-min cycling: 250 cal\n`;
+        response += `• 15-min HIIT: 150 cal\n`;
+        response += `• 1000 steps: 40 cal\n\n`;
+        response += `Let's get that number up! 🔥`;
+      } else {
+        response += `No calories burned from activity yet today.\n\n`;
+        response += `**Let's change that!** 💪\n\n`;
+        response += `Start logging your activities on the Dashboard:\n`;
+        response += `• Add steps to track walking calories\n`;
+        response += `• Log active minutes for workouts\n`;
+        response += `• Complete workouts to boost your burn\n\n`;
+        response += `Every movement counts! 🚀`;
+      }
+      
+      return response;
+    }
+    
+    // Progress/stats inquiry
+    if (lower.includes("progress") || lower.includes("how am i doing") || lower.includes("my stats") || lower.includes("how's my") || lower.includes("today")) {
+      let response = `Let me analyze your progress, ${name}! 📊\n\n`;
+      
+      response += `**Today's Performance:**\n`;
+      response += `• Steps: ${steps.toLocaleString()} ${steps >= 10000 ? '✅' : steps >= 5000 ? '🟡' : '🔴'} (Goal: 10,000)\n`;
+      response += `• Active Minutes: ${activeMinutes} ${activeMinutes >= 60 ? '✅' : activeMinutes >= 30 ? '🟡' : '🔴'} (Goal: 60)\n`;
+      response += `• Calories Burned: ${calories.toLocaleString()} cal\n`;
+      response += `• Hydration: ${hydration}/8 glasses ${hydration >= 8 ? '✅' : '💧'}\n`;
+      response += `• Workouts: ${workouts} ${workouts > 0 ? '💪' : ''}\n`;
+      response += `• Streak: ${streak} days 🔥\n\n`;
+      
+      // Personalized feedback
+      if (steps >= 10000 && activeMinutes >= 60 && hydration >= 8) {
+        response += `🌟 **Outstanding!** You're crushing all your goals today! This is the kind of consistency that leads to real transformation.\n\n`;
+      } else if (steps >= 5000 || activeMinutes >= 30) {
+        response += `👍 **Good progress!** You're on the right track. Let's push a bit more to hit all your targets.\n\n`;
+      } else {
+        response += `💪 **Let's get moving!** You've got plenty of time left today to make progress. Even a 15-minute workout counts!\n\n`;
+      }
+      
+      // Specific recommendations
+      response += `**Recommendations:**\n`;
+      if (steps < 10000) response += `• Take a ${Math.ceil((10000 - steps) / 100)} minute walk to hit your step goal\n`;
+      if (hydration < 8) response += `• Drink ${8 - hydration} more glasses of water\n`;
+      if (workouts === 0) response += `• Complete a quick 20-minute workout\n`;
+      if (activeMinutes < 60) response += `• Add ${60 - activeMinutes} more active minutes\n`;
+      
+      return response;
+    }
+    
+    // Motivation request
+    if (lower.includes("motivat") || lower.includes("inspire") || lower.includes("give up") || lower.includes("tired") || lower.includes("hard")) {
+      let response = `${name}, I hear you! 💪 Let me remind you why you started:\n\n`;
+      
+      response += `**🔥 Your Journey So Far:**\n`;
+      response += `• You've maintained a ${streak}-day streak\n`;
+      if (workouts > 0) response += `• ${workouts} workout${workouts > 1 ? 's' : ''} completed today\n`;
+      if (steps > 5000) response += `• ${steps.toLocaleString()} steps taken today\n`;
+      response += `• You're working towards: ${goal}\n\n`;
+      
+      response += `**💎 Remember:**\n`;
+      response += `"The only bad workout is the one that didn't happen."\n\n`;
+      
+      response += `Every single day you show up, you're:\n`;
+      response += `✓ Building discipline\n`;
+      response += `✓ Getting stronger\n`;
+      response += `✓ Closer to your goals\n`;
+      response += `✓ Inspiring others\n\n`;
+      
+      if (streak > 5) {
+        response += `You've already proven you can do this for ${streak} days straight! Don't break that streak now. Future you will thank present you! 🙏\n\n`;
+      }
+      
+      response += `**🎯 Small Win Challenge:**\n`;
+      response += `Just do ONE of these right now:\n`;
+      response += `• 10 push-ups\n`;
+      response += `• 5-minute walk\n`;
+      response += `• 1 glass of water\n`;
+      response += `• 30-second plank\n\n`;
+      response += `That's it. Just one. You've got this! 💪`;
+      
+      return response;
+    }
+    
+    // Goal setting
+    if (lower.includes("goal") || lower.includes("target") || lower.includes("achieve")) {
+      let response = `Let's talk goals, ${name}! 🎯\n\n`;
+      
+      if (userCtx?.goal) {
+        response += `I see your current goal is: **${goal}**\n\n`;
+        
+        if (userCtx.currentWeight && userCtx.targetWeight) {
+          const diff = parseFloat(userCtx.currentWeight) - parseFloat(userCtx.targetWeight);
+          const weeks = Math.ceil(Math.abs(diff) / 0.5); // 0.5kg per week
+          
+          response += `**📊 Goal Analysis:**\n`;
+          response += `• Current: ${userCtx.currentWeight} kg\n`;
+          response += `• Target: ${userCtx.targetWeight} kg\n`;
+          response += `• Difference: ${Math.abs(diff).toFixed(1)} kg\n`;
+          response += `• Estimated timeline: ${weeks} weeks (at 0.5kg/week)\n`;
+          response += `• Target date: ${new Date(Date.now() + weeks * 7 * 24 * 60 * 60 * 1000).toLocaleDateString()}\n\n`;
+        }
+      }
+      
+      response += `**🎯 SMART Goal Framework:**\n\n`;
+      response += `**S**pecific: Define exactly what you want\n`;
+      response += `**M**easurable: Track with numbers\n`;
+      response += `**A**chievable: Realistic for your lifestyle\n`;
+      response += `**R**elevant: Aligned with your values\n`;
+      response += `**T**ime-bound: Set a deadline\n\n`;
+      
+      response += `**📅 Recommended Milestones:**\n`;
+      response += `• Week 1-2: Build consistency (3-4 workouts/week)\n`;
+      response += `• Week 3-4: Increase intensity\n`;
+      response += `• Week 5-8: See visible changes\n`;
+      response += `• Week 9-12: Major transformation\n\n`;
+      
+      response += `**✅ Daily Habits to Focus On:**\n`;
+      response += `• Hit 10,000 steps ${steps >= 10000 ? '✅' : '⬜'}\n`;
+      response += `• 60 active minutes ${activeMinutes >= 60 ? '✅' : '⬜'}\n`;
+      response += `• 8 glasses of water ${hydration >= 8 ? '✅' : '⬜'}\n`;
+      response += `• 1 workout ${workouts > 0 ? '✅' : '⬜'}\n`;
+      response += `• 7-8 hours sleep ⬜\n\n`;
+      
+      response += `Keep your ${streak}-day streak alive! Consistency beats perfection! 🔥`;
+      
+      return response;
+    }
+    
+    // Sleep/Rest inquiry
+    if (lower.includes("sleep") || lower.includes("rest") || lower.includes("recover")) {
+      let response = `Great question about recovery, ${name}! 💤\n\n`;
+      
+      response += `**🌙 Sleep & Recovery Guide:**\n\n`;
+      response += `**Optimal Sleep for Fitness:**\n`;
+      response += `• 7-9 hours per night for adults\n`;
+      response += `• Consistent sleep schedule (same time daily)\n`;
+      response += `• Cool, dark room (65-68°F / 18-20°C)\n`;
+      response += `• No screens 1 hour before bed\n\n`;
+      
+      response += `**Why Sleep Matters:**\n`;
+      response += `✓ Muscle repair and growth\n`;
+      response += `✓ Hormone regulation (testosterone, growth hormone)\n`;
+      response += `✓ Better workout performance\n`;
+      response += `✓ Improved metabolism\n`;
+      response += `✓ Faster recovery\n\n`;
+      
+      response += `**Recovery Tips:**\n`;
+      response += `• Take 1-2 rest days per week\n`;
+      response += `• Active recovery: light walking, yoga\n`;
+      response += `• Stretch after workouts\n`;
+      response += `• Stay hydrated (${hydration}/8 glasses today)\n`;
+      response += `• Eat protein within 2 hours post-workout\n\n`;
+      
+      response += `💡 **Pro tip:** Quality sleep can improve workout performance by 20%!`;
+      
+      return response;
+    }
+    
+    // Supplements inquiry
+    if (lower.includes("supplement") || lower.includes("protein powder") || lower.includes("vitamin") || lower.includes("creatine")) {
+      let response = `Let me guide you on supplements, ${name}! 💊\n\n`;
+      
+      response += `**🥤 Essential Supplements:**\n\n`;
+      response += `**1. Protein Powder** (if needed)\n`;
+      response += `• Whey: Fast absorption, post-workout\n`;
+      response += `• Casein: Slow release, before bed\n`;
+      response += `• Plant-based: Pea, rice, hemp blend\n`;
+      response += `• Target: ${Math.round(parseFloat(userCtx?.currentWeight || "70") * 2)}g protein daily\n\n`;
+      
+      response += `**2. Creatine Monohydrate**\n`;
+      response += `• 5g daily (any time)\n`;
+      response += `• Improves strength and power\n`;
+      response += `• Helps muscle growth\n`;
+      response += `• Safe and well-researched\n\n`;
+      
+      response += `**3. Multivitamin**\n`;
+      response += `• Fills nutritional gaps\n`;
+      response += `• Take with breakfast\n`;
+      response += `• Choose quality brands\n\n`;
+      
+      response += `**4. Omega-3 (Fish Oil)**\n`;
+      response += `• Reduces inflammation\n`;
+      response += `• Supports heart health\n`;
+      response += `• 1-2g EPA+DHA daily\n\n`;
+      
+      response += `**⚠️ Important:**\n`;
+      response += `• Supplements don't replace real food\n`;
+      response += `• Focus on diet first\n`;
+      response += `• Consult doctor before starting\n`;
+      response += `• Buy from reputable brands\n\n`;
+      
+      response += `💡 **For ${goal}:** Prioritize protein and creatine!`;
+      
+      return response;
+    }
+    
+    // Injury/Pain inquiry
+    if (lower.includes("pain") || lower.includes("hurt") || lower.includes("injury") || lower.includes("sore")) {
+      let response = `I'm concerned about your pain, ${name}. Let me help! 🩹\n\n`;
+      
+      response += `**⚠️ Important First:**\n`;
+      response += `If you have severe pain, swelling, or can't move normally, please see a doctor immediately!\n\n`;
+      
+      response += `**🔍 Types of Pain:**\n\n`;
+      response += `**Good Pain (Muscle Soreness):**\n`;
+      response += `• Dull, achy feeling\n`;
+      response += `• Appears 24-48 hours after workout\n`;
+      response += `• Symmetrical (both sides)\n`;
+      response += `• Improves with movement\n`;
+      response += `✓ This is normal DOMS (Delayed Onset Muscle Soreness)\n\n`;
+      
+      response += `**Bad Pain (Injury):**\n`;
+      response += `• Sharp, stabbing sensation\n`;
+      response += `• Immediate during exercise\n`;
+      response += `• One-sided or localized\n`;
+      response += `• Worsens with movement\n`;
+      response += `⚠️ Stop exercising and rest!\n\n`;
+      
+      response += `**Recovery Protocol (RICE):**\n`;
+      response += `• **R**est: Take time off\n`;
+      response += `• **I**ce: 15-20 min, 3-4x daily\n`;
+      response += `• **C**ompression: Wrap affected area\n`;
+      response += `• **E**levation: Raise above heart\n\n`;
+      
+      response += `**Prevention Tips:**\n`;
+      response += `✓ Always warm up (5-10 min)\n`;
+      response += `✓ Use proper form\n`;
+      response += `✓ Progress gradually\n`;
+      response += `✓ Listen to your body\n`;
+      response += `✓ Get adequate rest\n\n`;
+      
+      response += `💡 When in doubt, rest and consult a healthcare professional!`;
+      
+      return response;
+    }
+    
+    // Weight loss specific
+    if (lower.includes("lose weight") || lower.includes("weight loss") || lower.includes("fat loss") || lower.includes("slim")) {
+      let response = `Let's create your weight loss plan, ${name}! 🎯\n\n`;
+      
+      const currentWeight = parseFloat(userCtx?.currentWeight || "70");
+      const targetWeight = parseFloat(userCtx?.targetWeight || "65");
+      const weightToLose = currentWeight - targetWeight;
+      
+      response += `**📊 Your Weight Loss Journey:**\n`;
+      if (userCtx?.currentWeight && userCtx?.targetWeight) {
+        response += `• Current: ${currentWeight} kg\n`;
+        response += `• Target: ${targetWeight} kg\n`;
+        response += `• To Lose: ${weightToLose.toFixed(1)} kg\n`;
+        response += `• Timeline: ${Math.ceil(weightToLose / 0.5)} weeks (0.5kg/week)\n\n`;
+      }
+      
+      response += `**🔥 The Formula:**\n`;
+      response += `Weight Loss = Calorie Deficit + Exercise + Consistency\n\n`;
+      
+      response += `**1️⃣ Nutrition (70% of results):**\n`;
+      response += `• Calorie deficit: 500 cal/day\n`;
+      response += `• High protein: ${Math.round(currentWeight * 2)}g daily\n`;
+      response += `• Moderate carbs: Around workouts\n`;
+      response += `• Healthy fats: 20-30% of calories\n`;
+      response += `• Water: 8+ glasses (you're at ${hydration}/8)\n\n`;
+      
+      response += `**2️⃣ Exercise (30% of results):**\n`;
+      response += `• Cardio: 3-4x per week (30-45 min)\n`;
+      response += `• Strength: 3x per week (preserve muscle)\n`;
+      response += `• Steps: 10,000 daily (you're at ${steps.toLocaleString()})\n`;
+      response += `• NEAT: Stay active throughout day\n\n`;
+      
+      response += `**3️⃣ Lifestyle:**\n`;
+      response += `• Sleep: 7-9 hours\n`;
+      response += `• Stress: Manage with meditation\n`;
+      response += `• Consistency: 80/20 rule\n`;
+      response += `• Track: Log meals and workouts\n\n`;
+      
+      response += `**🚫 Avoid:**\n`;
+      response += `• Crash diets (too restrictive)\n`;
+      response += `• Skipping meals\n`;
+      response += `• Only cardio (lose muscle)\n`;
+      response += `• Unrealistic expectations\n\n`;
+      
+      response += `💡 **Sustainable weight loss:** 0.5-1 kg per week is healthy and maintainable!`;
+      
+      return response;
+    }
+    
+    // Muscle gain specific
+    if (lower.includes("gain muscle") || lower.includes("build muscle") || lower.includes("bulk") || lower.includes("bigger")) {
+      let response = `Let's build some muscle, ${name}! 💪\n\n`;
+      
+      const weight = parseFloat(userCtx?.currentWeight || "70");
+      
+      response += `**📊 Muscle Building Formula:**\n\n`;
+      response += `**1️⃣ Nutrition (Calorie Surplus):**\n`;
+      response += `• Calories: ${Math.round(weight * 28 + 300)} cal/day (+300 surplus)\n`;
+      response += `• Protein: ${Math.round(weight * 2.2)}g daily (CRITICAL!)\n`;
+      response += `• Carbs: ${Math.round((weight * 28 + 300) * 0.45 / 4)}g (fuel for workouts)\n`;
+      response += `• Fats: ${Math.round((weight * 28 + 300) * 0.25 / 9)}g (hormone production)\n`;
+      response += `• Meals: 4-6 per day (every 3-4 hours)\n\n`;
+      
+      response += `**2️⃣ Training (Progressive Overload):**\n`;
+      response += `• Frequency: 4-5x per week\n`;
+      response += `• Focus: Compound movements\n`;
+      response += `  - Squats, Deadlifts, Bench Press\n`;
+      response += `  - Pull-ups, Rows, Overhead Press\n`;
+      response += `• Volume: 3-4 sets × 8-12 reps\n`;
+      response += `• Rest: 2-3 min between sets\n`;
+      response += `• Progression: Add weight weekly\n\n`;
+      
+      response += `**3️⃣ Recovery:**\n`;
+      response += `• Sleep: 8-9 hours (muscle grows during sleep)\n`;
+      response += `• Rest days: 2-3 per week\n`;
+      response += `• Hydration: ${hydration}/8 glasses today\n`;
+      response += `• Stretching: Post-workout\n\n`;
+      
+      response += `**📅 Sample Split:**\n`;
+      response += `• Monday: Chest + Triceps\n`;
+      response += `• Tuesday: Back + Biceps\n`;
+      response += `• Wednesday: Rest\n`;
+      response += `• Thursday: Legs\n`;
+      response += `• Friday: Shoulders + Abs\n`;
+      response += `• Weekend: Rest/Active recovery\n\n`;
+      
+      response += `**💊 Supplements:**\n`;
+      response += `• Protein powder (if needed)\n`;
+      response += `• Creatine: 5g daily\n`;
+      response += `• Multivitamin\n\n`;
+      
+      response += `💡 **Realistic gains:** 0.5-1 kg muscle per month for beginners!`;
+      
+      return response;
+    }
+    
+    // Cardio inquiry
+    if (lower.includes("cardio") || lower.includes("running") || lower.includes("jogging") || lower.includes("cycling")) {
+      let response = `Let's talk cardio, ${name}! 🏃‍♂️\n\n`;
+      
+      response += `**🏃 Types of Cardio:**\n\n`;
+      response += `**1. LISS (Low Intensity Steady State)**\n`;
+      response += `• Duration: 30-60 minutes\n`;
+      response += `• Intensity: 60-70% max heart rate\n`;
+      response += `• Examples: Walking, light jogging, cycling\n`;
+      response += `• Best for: Fat burning, recovery\n`;
+      response += `• Frequency: 3-5x per week\n\n`;
+      
+      response += `**2. HIIT (High Intensity Interval Training)**\n`;
+      response += `• Duration: 15-25 minutes\n`;
+      response += `• Intensity: 80-95% max heart rate\n`;
+      response += `• Format: 30 sec work / 30 sec rest\n`;
+      response += `• Best for: Fat loss, time efficiency\n`;
+      response += `• Frequency: 2-3x per week\n\n`;
+      
+      response += `**3. MISS (Moderate Intensity)**\n`;
+      response += `• Duration: 20-40 minutes\n`;
+      response += `• Intensity: 70-80% max heart rate\n`;
+      response += `• Examples: Jogging, swimming, rowing\n`;
+      response += `• Best for: Endurance, general fitness\n`;
+      response += `• Frequency: 3-4x per week\n\n`;
+      
+      response += `**📊 For Your Goal (${goal}):**\n`;
+      if (goal.toLowerCase().includes("weight loss") || goal.toLowerCase().includes("fat")) {
+        response += `• HIIT: 2-3x per week (max fat burn)\n`;
+        response += `• LISS: 2-3x per week (recovery cardio)\n`;
+        response += `• Total: 4-5 cardio sessions\n`;
+      } else if (goal.toLowerCase().includes("muscle")) {
+        response += `• LISS: 2-3x per week (preserve muscle)\n`;
+        response += `• Avoid excessive cardio\n`;
+        response += `• Focus on strength training\n`;
+      } else {
+        response += `• Mix of HIIT and MISS\n`;
+        response += `• 3-4x per week\n`;
+        response += `• Balance with strength training\n`;
+      }
+      
+      response += `\n**💡 Today's Activity:**\n`;
+      response += `• Steps: ${steps.toLocaleString()}/10,000\n`;
+      response += `• Active minutes: ${activeMinutes}/60\n\n`;
+      
+      response += `Ready for a cardio session? Ask me for a specific workout!`;
+      
+      return response;
+    }
+    
+    // Form/Technique inquiry
+    if (lower.includes("form") || lower.includes("technique") || lower.includes("how to") || lower.includes("correct way")) {
+      let response = `Great question about form, ${name}! Proper technique is crucial! 🎯\n\n`;
+      
+      response += `**🏋️ Key Exercise Form Tips:**\n\n`;
+      response += `**Squats:**\n`;
+      response += `✓ Feet shoulder-width apart\n`;
+      response += `✓ Chest up, core tight\n`;
+      response += `✓ Knees track over toes\n`;
+      response += `✓ Depth: Thighs parallel to ground\n`;
+      response += `✓ Push through heels\n\n`;
+      
+      response += `**Push-ups:**\n`;
+      response += `✓ Hands shoulder-width\n`;
+      response += `✓ Body in straight line\n`;
+      response += `✓ Core engaged\n`;
+      response += `✓ Lower chest to ground\n`;
+      response += `✓ Elbows at 45° angle\n\n`;
+      
+      response += `**Deadlifts:**\n`;
+      response += `✓ Feet hip-width apart\n`;
+      response += `✓ Grip just outside legs\n`;
+      response += `✓ Back flat, chest up\n`;
+      response += `✓ Drive through heels\n`;
+      response += `✓ Hips and shoulders rise together\n\n`;
+      
+      response += `**Planks:**\n`;
+      response += `✓ Forearms on ground\n`;
+      response += `✓ Body in straight line\n`;
+      response += `✓ Don't let hips sag\n`;
+      response += `✓ Engage core and glutes\n`;
+      response += `✓ Breathe normally\n\n`;
+      
+      response += `**🎯 General Form Principles:**\n`;
+      response += `• Control the movement (no momentum)\n`;
+      response += `• Full range of motion\n`;
+      response += `• Breathe: Exhale on effort\n`;
+      response += `• Start light, master form first\n`;
+      response += `• Film yourself to check\n\n`;
+      
+      response += `💡 **Remember:** Perfect form > Heavy weight!`;
+      
+      return response;
+    }
+    
+    // Time/Schedule inquiry
+    if (lower.includes("when") || lower.includes("time") || lower.includes("schedule") || lower.includes("best time")) {
+      let response = `Let's optimize your schedule, ${name}! ⏰\n\n`;
+      
+      response += `**🕐 Best Times to Workout:**\n\n`;
+      response += `**Morning (6-9 AM):**\n`;
+      response += `✓ Boosts metabolism all day\n`;
+      response += `✓ Consistent routine\n`;
+      response += `✓ Less crowded gyms\n`;
+      response += `✓ Better for fat burning (fasted)\n`;
+      response += `⚠️ Need good warm-up\n\n`;
+      
+      response += `**Afternoon (2-4 PM):**\n`;
+      response += `✓ Peak body temperature\n`;
+      response += `✓ Best strength performance\n`;
+      response += `✓ Reduced injury risk\n`;
+      response += `✓ Optimal muscle function\n\n`;
+      
+      response += `**Evening (5-7 PM):**\n`;
+      response += `✓ Highest testosterone levels\n`;
+      response += `✓ Most people's preference\n`;
+      response += `✓ Stress relief after work\n`;
+      response += `⚠️ May affect sleep if too late\n\n`;
+      
+      response += `**📅 Weekly Schedule Template:**\n`;
+      response += `• Monday: Upper body strength\n`;
+      response += `• Tuesday: Cardio/HIIT\n`;
+      response += `• Wednesday: Lower body strength\n`;
+      response += `• Thursday: Active recovery/yoga\n`;
+      response += `• Friday: Full body circuit\n`;
+      response += `• Saturday: Cardio + core\n`;
+      response += `• Sunday: Rest\n\n`;
+      
+      response += `**⏰ Meal Timing:**\n`;
+      response += `• Pre-workout: 1-2 hours before (carbs + protein)\n`;
+      response += `• Post-workout: Within 2 hours (protein + carbs)\n`;
+      response += `• Breakfast: Within 1 hour of waking\n`;
+      response += `• Dinner: 2-3 hours before bed\n\n`;
+      
+      response += `💡 **Best time = When you'll be most consistent!**`;
+      
+      return response;
+    }
+    
+    // Default intelligent response with context awareness
+    let response = `Hey ${name}! 👋\n\n`;
+    
+    // Analyze their question for keywords
+    const keywords = lower.split(' ').filter(word => word.length > 3);
+    const fitnessKeywords = ['fitness', 'health', 'body', 'weight', 'muscle', 'strength', 'endurance'];
+    const hasFitnessContext = keywords.some(word => fitnessKeywords.includes(word));
+    
+    if (steps > 0 || workouts > 0 || hydration > 0) {
+      response += `I can see you're active today:\n`;
+      if (steps > 0) response += `• ${steps.toLocaleString()} steps `;
+      if (steps >= 10000) response += `✅\n`;
+      else if (steps > 0) response += `(${(10000 - steps).toLocaleString()} to goal)\n`;
+      if (workouts > 0) response += `• ${workouts} workout${workouts > 1 ? 's' : ''} completed 💪\n`;
+      if (activeMinutes > 0) response += `• ${activeMinutes} active minutes\n`;
+      if (hydration > 0) response += `• ${hydration}/8 glasses of water 💧\n`;
+      response += `\nKeep up the great work! 🔥\n\n`;
+    }
+    
+    if (hasFitnessContext) {
+      response += `I'd love to help with that! Could you be more specific?\n\n`;
+    }
+    
+    response += `**💡 I'm your AI fitness coach. I can help with:**\n\n`;
+    response += `🏋️ **Workouts**\n`;
+    response += `• Custom workout plans\n`;
+    response += `• Exercise form and technique\n`;
+    response += `• HIIT, strength, cardio routines\n`;
+    response += `• Home or gym workouts\n\n`;
+    
+    response += `🥗 **Nutrition**\n`;
+    response += `• Personalized meal plans\n`;
+    response += `• Calorie and macro calculations\n`;
+    response += `• Healthy recipes and food swaps\n`;
+    response += `• Supplement advice\n\n`;
+    
+    response += `📊 **Progress & Goals**\n`;
+    response += `• Track your daily stats\n`;
+    response += `• Set SMART fitness goals\n`;
+    response += `• Analyze your progress\n`;
+    response += `• Celebrate achievements\n\n`;
+    
+    response += `💪 **Support**\n`;
+    response += `• Motivation and accountability\n`;
+    response += `• Injury prevention tips\n`;
+    response += `• Recovery and sleep advice\n`;
+    response += `• Answer any fitness question\n\n`;
+    
+    response += `**🎯 Quick Examples:**\n`;
+    response += `• "Create a workout plan for me"\n`;
+    response += `• "What should I eat today?"\n`;
+    response += `• "How many steps did I take?"\n`;
+    response += `• "Help me lose weight"\n`;
+    response += `• "I need motivation"\n`;
+    response += `• "Best time to workout?"\n\n`;
+    
+    response += `What would you like to know? I'm here to help! 💪`;
+    
+    return response;
+  };
+
+  const handleQuickPrompt = (prompt: string) => {
+    setInput(prompt);
+    inputRef.current?.focus();
+  };
+
+  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
+  const clearChat = () => {
+    setMessages([]);
+    setError("");
+  };
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  };
+
+  return (
+    <div className="ai-coach-page">
+      {/* Navigation */}
+      <nav className="navbar">
+        <div className="container">
+          <div className="nav-wrapper">
+            <Link to="/landing" className="brand-logo">
+              <FitFusionLogo width={40} height={40} />
+              <span className="brand-text">Fit Fusion</span>
+            </Link>
+            
+            <ul className="nav-menu">
+              <li><Link to="/dashboard" className="nav-link">Dashboard</Link></li>
+              <li><Link to="/workout" className="nav-link">Workouts</Link></li>
+              <li><Link to="/diet" className="nav-link">Nutrition</Link></li>
+              <li><Link to="/progress" className="nav-link">Progress</Link></li>
+              <li><Link to="/ai-coach" className="nav-link active">AI Coach</Link></li>
+              <li className="nav-profile">
+                <div className="profile-avatar">
+                  <span>{userName.charAt(0) || 'U'}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="coach-container">
+        <div className="container">
+          {/* Header */}
+          <div className="coach-header">
+            <div className="header-content">
+              <div className="coach-avatar">
+                <span className="avatar-icon">🤖</span>
+              </div>
+              <div className="header-text">
+                <h1 className="coach-title">AI Fitness Coach</h1>
+                <p className="coach-subtitle">
+                  Your personal AI-powered fitness and nutrition expert, available 24/7
+                </p>
+              </div>
+            </div>
+            {messages.length > 0 && (
+              <button className="clear-btn" onClick={clearChat}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                </svg>
+                Clear Chat
+              </button>
+            )}
+          </div>
+
+          {/* Chat Interface */}
+          <div className="chat-wrapper">
+            <div className="chat-container">
+              {messages.length === 0 ? (
+                <div className="welcome-screen">
+                  <div className="welcome-icon">💪</div>
+                  <h2 className="welcome-title">Welcome to Your AI Coach!</h2>
+                  <p className="welcome-text">
+                    I'm here to help you achieve your fitness goals. Ask me anything about:
+                  </p>
+                  <div className="features-grid">
+                    <div className="feature-item">
+                      <span className="feature-icon">🏋️</span>
+                      <span className="feature-text">Workout Plans</span>
+                    </div>
+                    <div className="feature-item">
+                      <span className="feature-icon">🥗</span>
+                      <span className="feature-text">Nutrition Advice</span>
+                    </div>
+                    <div className="feature-item">
+                      <span className="feature-icon">🎯</span>
+                      <span className="feature-text">Goal Setting</span>
+                    </div>
+                    <div className="feature-item">
+                      <span className="feature-icon">📊</span>
+                      <span className="feature-text">Progress Tracking</span>
+                    </div>
+                  </div>
+                  
+                  <div className="quick-prompts">
+                    <p className="prompts-label">Quick Start:</p>
+                    <div className="prompts-grid">
+                      {quickPrompts.map((prompt, idx) => (
+                        <button
+                          key={idx}
+                          className="prompt-btn"
+                          onClick={() => handleQuickPrompt(prompt.prompt)}
+                        >
+                          <span className="prompt-icon">{prompt.icon}</span>
+                          <span className="prompt-title">{prompt.title}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="messages-container">
+                  {messages.filter(m => m.role !== 'system').map((m, idx) => (
+                    <div key={idx} className={`message ${m.role}`}>
+                      <div className="message-avatar">
+                        {m.role === 'user' ? (
+                          <span>{userName.charAt(0) || 'U'}</span>
+                        ) : (
+                          <span>🤖</span>
+                        )}
+                      </div>
+                      <div className="message-content">
+                        <div className="message-header">
+                          <span className="message-author">
+                            {m.role === 'user' ? (userName || 'You') : 'AI Coach'}
+                          </span>
+                          <span className="message-time">{formatTime(m.timestamp)}</span>
+                        </div>
+                        <div className="message-text">{m.content}</div>
+                      </div>
+                    </div>
+                  ))}
+                  {thinking && (
+                    <div className="message assistant">
+                      <div className="message-avatar">
+                        <span>🤖</span>
+                      </div>
+                      <div className="message-content">
+                        <div className="message-header">
+                          <span className="message-author">AI Coach</span>
+                        </div>
+                        <div className="thinking-container">
+                          <div className="thinking-logo">
+                            <FitFusionLogo width={60} height={60} />
+                          </div>
+                          <div className="thinking-text">Thinking...</div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {loading && !thinking && (
+                    <div className="message assistant">
+                      <div className="message-avatar">
+                        <span>🤖</span>
+                      </div>
+                      <div className="message-content">
+                        <div className="message-header">
+                          <span className="message-author">AI Coach</span>
+                        </div>
+                        <div className="typing-indicator">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
+              )}
+            </div>
+
+            {/* Input Area */}
+            <div className="input-container">
+              {error && (
+                <div className="error-banner">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                  </svg>
+                  <span>{error}</span>
+                  <button onClick={() => setError('')}>×</button>
+                </div>
+              )}
+              <div className="input-wrapper">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={onKeyDown}
+                  placeholder="Ask me anything about fitness, nutrition, or wellness..."
+                  className="message-input"
+                  disabled={loading || thinking}
+                />
+                <button 
+                  className="send-btn" 
+                  onClick={() => sendMessage()} 
+                  disabled={loading || thinking || !input.trim()}
+                >
+                  {(loading || thinking) ? (
+                    <svg className="spinner" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10"/>
+                    </svg>
+                  ) : (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                  )}
+                </button>
+              </div>
+              <p className="input-hint">
+                💡 Tip: Be specific about your goals, current fitness level, and any limitations for better advice
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        .ai-coach-page {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          background: #f8fafc;
+          min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(20px);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+        }
+
+        .nav-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem 0;
+        }
+
+        .brand-logo {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          text-decoration: none;
+          color: #1a1a1a;
+        }
+
+        .logo-icon {
+          width: 40px;
+          height: 40px;
+          background: linear-gradient(135deg, #708d50, #5a7340);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+        }
+
+        .brand-text {
+          font-size: 1.5rem;
+          font-weight: 800;
+          letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+          display: flex;
+          align-items: center;
+          gap: 0;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .nav-link {
+          text-decoration: none;
+          color: #4a4a4a;
+          font-weight: 500;
+          font-size: 0.95rem;
+          padding: 0.75rem 1.25rem;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+        }
+
+        .nav-link.active {
+          color: #708d50;
+          background: rgba(112, 141, 80, 0.1);
+        }
+
+        .nav-link:hover {
+          color: #708d50;
+          background: rgba(112, 141, 80, 0.08);
+        }
+
+        .nav-profile {
+          margin-left: 1rem;
+        }
+
+        .profile-avatar {
+          width: 40px;
+          height: 40px;
+          background: linear-gradient(135deg, #708d50, #5a7340);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        /* Coach Container */
+        .coach-container {
+          padding: 2rem 0;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .coach-header {
+          background: white;
+          border-radius: 20px;
+          padding: 2rem;
+          margin-bottom: 2rem;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .header-content {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+        }
+
+        .coach-avatar {
+          width: 80px;
+          height: 80px;
+          background: linear-gradient(135deg, #8aa665, #708d50);
+          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2.5rem;
+        }
+
+        .coach-title {
+          font-size: 2rem;
+          font-weight: 800;
+          color: #1a1a1a;
+          margin-bottom: 0.5rem;
+        }
+
+        .coach-subtitle {
+          font-size: 1.125rem;
+          color: #6a6a6a;
+          margin: 0;
+        }
+
+        .clear-btn {
+          background: #ef4444;
+          color: white;
+          border: none;
+          border-radius: 12px;
+          padding: 0.75rem 1.5rem;
+          font-size: 0.95rem;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+          background: #dc2626;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Chat Wrapper */
+        .chat-wrapper {
+          background: white;
+          border-radius: 20px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          height: calc(100vh - 300px);
+          min-height: 600px;
+        }
+
+        .chat-container {
+          flex: 1;
+          overflow-y: auto;
+          padding: 2rem;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+          text-align: center;
+          padding: 2rem;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .welcome-icon {
+          font-size: 4rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .welcome-title {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #1a1a1a;
+          margin-bottom: 1rem;
+        }
+
+        .welcome-text {
+          font-size: 1.125rem;
+          color: #6a6a6a;
+          margin-bottom: 2rem;
+        }
+
+        .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 1rem;
+          margin-bottom: 3rem;
+        }
+
+        .feature-item {
+          background: #f8fafc;
+          border-radius: 12px;
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+        .feature-icon {
+          font-size: 2rem;
+        }
+
+        .feature-text {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #1a1a1a;
+        }
+
+        .quick-prompts {
+          margin-top: 2rem;
+        }
+
+        .prompts-label {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #1a1a1a;
+          margin-bottom: 1rem;
+        }
+
+        .prompts-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1rem;
+        }
+
+        .prompt-btn {
+          background: linear-gradient(135deg, #708d50, #5a7340);
+          color: white;
+          border: none;
+          border-radius: 12px;
+          padding: 1rem 1.5rem;
+          font-size: 0.95rem;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          transition: all 0.3s ease;
+        }
+
+        .prompt-btn:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 20px rgba(112, 141, 80, 0.4);
+        }
+
+        .prompt-icon {
+          font-size: 1.5rem;
+        }
+
+        /* Messages */
+        .messages-container {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .message {
+          display: flex;
+          gap: 1rem;
+          animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .message.user {
+          flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          flex-shrink: 0;
+        }
+
+        .message.user .message-avatar {
+          background: linear-gradient(135deg, #708d50, #5a7340);
+          color: white;
+        }
+
+        .message.assistant .message-avatar {
+          background: linear-gradient(135deg, #8aa665, #708d50);
+          font-size: 1.25rem;
+        }
+
+        .message-content {
+          flex: 1;
+          max-width: 70%;
+        }
+
+        .message.user .message-content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+        }
+
+        .message-header {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .message.user .message-header {
+          flex-direction: row-reverse;
+        }
+
+        .message-author {
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: #1a1a1a;
+        }
+
+        .message-time {
+          font-size: 0.75rem;
+          color: #9ca3af;
+        }
+
+        .message-text {
+          background: #f8fafc;
+          padding: 1rem 1.25rem;
+          border-radius: 16px;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          color: #1a1a1a;
+          white-space: pre-wrap;
+        }
+
+        .message.user .message-text {
+          background: linear-gradient(135deg, #708d50, #5a7340);
+          color: white;
+        }
+
+        /* Thinking Animation */
+        .thinking-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+          padding: 2rem 3rem;
+          background: linear-gradient(135deg, rgba(138, 166, 101, 0.1), rgba(112, 141, 80, 0.1));
+          border-radius: 16px;
+          width: fit-content;
+        }
+
+        .thinking-logo {
+          animation: heartbeat 1.2s ease-in-out infinite;
+          filter: drop-shadow(0 4px 12px rgba(112, 141, 80, 0.3));
+        }
+
+        @keyframes heartbeat {
+          0%, 100% {
+            transform: scale(1);
+          }
+          10%, 30% {
+            transform: scale(1.1);
+          }
+          20%, 40% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.15);
+          }
+          60% {
+            transform: scale(1);
+          }
+        }
+
+        .thinking-text {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #708d50;
+          animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 0.6;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+          display: flex;
+          gap: 0.5rem;
+          padding: 1rem 1.25rem;
+          background: #f8fafc;
+          border-radius: 16px;
+          width: fit-content;
+        }
+
+        .typing-indicator span {
+          width: 8px;
+          height: 8px;
+          background: #708d50;
+          border-radius: 50%;
+          animation: bounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(1) {
+          animation-delay: -0.32s;
+        }
+
+        .typing-indicator span:nth-child(2) {
+          animation-delay: -0.16s;
+        }
+
+        @keyframes bounce {
+          0%, 80%, 100% {
+            transform: scale(0);
+          }
+          40% {
+            transform: scale(1);
+          }
+        }
+
+        /* Input Container */
+        .input-container {
+          border-top: 1px solid #e5e7eb;
+          padding: 1.5rem 2rem;
+          background: #fafafa;
+        }
+
+        .error-banner {
+          background: #fee2e2;
+          border: 1px solid #ef4444;
+          border-radius: 12px;
+          padding: 0.75rem 1rem;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          color: #dc2626;
+          font-size: 0.875rem;
+        }
+
+        .error-banner button {
+          margin-left: auto;
+          background: none;
+          border: none;
+          color: #dc2626;
+          font-size: 1.5rem;
+          cursor: pointer;
+          padding: 0;
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .input-wrapper {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .message-input {
+          flex: 1;
+          padding: 1rem 1.5rem;
+          border: 2px solid #e5e7eb;
+          border-radius: 12px;
+          font-size: 0.95rem;
+          font-family: inherit;
+          transition: all 0.3s ease;
+        }
+
+        .message-input:focus {
+          outline: none;
+          border-color: #708d50;
+          box-shadow: 0 0 0 3px rgba(112, 141, 80, 0.1);
+        }
+
+        .message-input:disabled {
+          background: #f1f5f9;
+          cursor: not-allowed;
+        }
+
+        .send-btn {
+          background: linear-gradient(135deg, #708d50, #5a7340);
+          color: white;
+          border: none;
+          border-radius: 12px;
+          padding: 1rem 1.5rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .send-btn:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(112, 141, 80, 0.4);
+        }
+
+        .send-btn:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        .spinner {
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .input-hint {
+          font-size: 0.875rem;
+          color: #6a6a6a;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .nav-menu {
+            display: none;
+          }
+
+          .coach-header {
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: center;
+          }
+
+          .header-content {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .coach-title {
+            font-size: 1.5rem;
+          }
+
+          .chat-wrapper {
+            height: calc(100vh - 400px);
+          }
+
+          .message-content {
+            max-width: 85%;
+          }
+
+          .prompts-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default AiCoach;

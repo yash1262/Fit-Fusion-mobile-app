@@ -1,0 +1,788 @@
+/* Meal Planner Page Styles */
+
+.meal-planner-page {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.meal-planner-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #708d50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.meal-planner-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+}
+
+/* Weather Card */
+.weather-card {
+  background: linear-gradient(135deg, #708d50 0%, #5a7340 100%);
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  box-shadow: 0 8px 24px rgba(112, 141, 80, 0.3);
+  color: white;
+}
+
+.weather-icon-large {
+  font-size: 5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.weather-info h2 {
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.weather-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+}
+
+.weather-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.stat-value.category {
+  text-transform: capitalize;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+/* Ingredient Input Section */
+.ingredient-input-section {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ingredient-input-section h2 {
+  font-size: 1.75rem;
+  color: #0f172a;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  color: #64748b;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.ingredient-input {
+  flex: 1;
+  padding: 14px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.ingredient-input:focus {
+  outline: none;
+  border-color: #708d50;
+  box-shadow: 0 0 0 3px rgba(112, 141, 80, 0.1);
+}
+
+.add-btn {
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #708d50, #5a7340);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(112, 141, 80, 0.3);
+}
+
+.add-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Suggestions Dropdown */
+.suggestions-dropdown {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+}
+
+.suggestion-item {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  background: white;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 0.9375rem;
+  color: #4a5568;
+}
+
+.suggestion-item:hover {
+  background: #f8fafc;
+}
+
+.suggestion-item:not(:last-child) {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Selected Ingredients */
+.selected-ingredients {
+  margin-top: 24px;
+}
+
+.selected-ingredients h3 {
+  font-size: 1.125rem;
+  color: #0f172a;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.ingredient-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ingredient-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #708d50, #5a7340);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  animation: chipIn 0.3s ease;
+}
+
+@keyframes chipIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.remove-chip-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.remove-chip-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+/* Meal Suggestions Section */
+.meal-suggestions-section {
+  margin-bottom: 40px;
+}
+
+.meal-suggestions-section h2 {
+  font-size: 1.75rem;
+  color: #0f172a;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+/* Meal Tabs */
+.meal-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.meal-tab {
+  padding: 12px 24px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  color: #64748b;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.meal-tab:hover {
+  border-color: #708d50;
+  color: #708d50;
+}
+
+.meal-tab.active {
+  background: linear-gradient(135deg, #708d50, #5a7340);
+  color: white;
+  border-color: #708d50;
+  box-shadow: 0 4px 12px rgba(112, 141, 80, 0.3);
+}
+
+/* Meal Cards Grid */
+.meal-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.meal-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  animation: cardIn 0.5s ease;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.meal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.meal-card.can-make {
+  border-color: #10b981;
+}
+
+.meal-card.partial-match {
+  border-color: #f59e0b;
+}
+
+.meal-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.meal-emoji {
+  font-size: 3rem;
+}
+
+.save-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.save-btn:hover {
+  transform: scale(1.2);
+}
+
+.save-btn.saved {
+  animation: heartBeat 0.5s ease;
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+.meal-name {
+  font-size: 1.375rem;
+  color: #0f172a;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.meal-description {
+  color: #64748b;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.meal-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.prep-time {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.meal-type {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.meal-type.veg {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.meal-type.non-veg {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.meal-nutrition {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.nutrition-item {
+  font-size: 0.875rem;
+  color: #4a5568;
+  font-weight: 600;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.match-score {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.match-score.perfect {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.match-score.partial {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Ingredients Section */
+.ingredients-section {
+  margin-top: 16px;
+}
+
+.ingredients-section h4 {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ingredient-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ingredient-tag {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.ingredient-tag.available {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.ingredient-tag.missing {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* No Meals Message */
+.no-meals-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+.no-meals-message p {
+  font-size: 1.125rem;
+  margin-bottom: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .meal-planner-container {
+    padding: 80px 16px 40px;
+  }
+
+  .weather-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+  }
+
+  .weather-icon-large {
+    font-size: 4rem;
+  }
+
+  .weather-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ingredient-input-section {
+    padding: 24px;
+  }
+
+  .input-wrapper {
+    flex-direction: column;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  .meal-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .meal-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Weather Filter Buttons */
+.weather-filters {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.weather-filter-btn {
+  padding: 12px 24px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  color: #64748b;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.weather-filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.weather-filter-btn.active {
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.weather-filter-btn.hot.active {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.weather-filter-btn.cold.active {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.weather-filter-btn.rainy.active {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+.weather-filter-btn.humid.active {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+.weather-filter-btn.cloudy.active {
+  background: linear-gradient(135deg, #64748b, #475569);
+}
+
+/* Celebration Animation */
+.celebration-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  pointer-events: none;
+  animation: fadeOut 5s ease-in-out;
+}
+
+@keyframes fadeOut {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.celebration-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  animation: celebrationBounce 1s ease-out;
+}
+
+@keyframes celebrationBounce {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.celebration-text {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #708d50;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  background: white;
+  padding: 40px 60px;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.celebration-subtext {
+  font-size: 1.5rem;
+  color: #64748b;
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+/* Confetti Animation */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  animation: confettiFall 3s linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti:nth-child(odd) {
+  width: 8px;
+  height: 16px;
+  animation-duration: 2.5s;
+}
+
+.confetti:nth-child(even) {
+  width: 12px;
+  height: 8px;
+  animation-duration: 3.5s;
+}
+
+.confetti:nth-child(3n) {
+  animation-duration: 2.8s;
+}
+
+.confetti:nth-child(4n) {
+  animation-duration: 3.2s;
+}
+
+/* Ribbon Effect */
+.confetti:nth-child(5n) {
+  width: 4px;
+  height: 30px;
+  border-radius: 2px;
+}
+
+/* Add sparkle to perfect match cards */
+.meal-card.can-make {
+  position: relative;
+  overflow: visible;
+  animation: cardGlow 2s ease-in-out infinite;
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    box-shadow: 0 2px 12px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(16, 185, 129, 0.6);
+  }
+}
+
+.meal-card.can-make::before {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 2rem;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3) rotate(180deg);
+    opacity: 0.7;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .celebration-text {
+    font-size: 2rem;
+    padding: 30px 40px;
+  }
+
+  .celebration-subtext {
+    font-size: 1.125rem;
+  }
+}
